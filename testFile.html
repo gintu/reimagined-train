@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place Autocomplete </title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+</head>
+<body>
+    <div id="locationField">
+      <input class ="autocomplete" placeholder="Enter a city" type="text" />
+    </div>
+
+<script>
+var autocomplete;
+function initMap() {
+        infoWindow = new google.maps.InfoWindow({
+          content: document.getElementById('info-content')
+        });
+        autocomplete = new google.maps.places.Autocomplete((document.getElementsByTagName('autocomplete')));
+        places = new google.maps.places.PlacesService(map);
+        autocomplete.addListener('place_changed', onPlaceChanged);
+      }
+
+      function onPlaceChanged() {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          document.getElementsByTagName('autocomplete').placeholder = 'Enter a city';
+        }
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyCSxUkLnOe4B5WwYeJPugVNTYssGcdzWmY &libraries=places&callback=initMap"
+        async defer></script>
+  </body>
+</html>
