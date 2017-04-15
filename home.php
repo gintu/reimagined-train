@@ -21,7 +21,7 @@ header("Location: index.php");
 
 <div id="right">
 <div id="content">
-hi' <?php echo $_SESSION['user']; ?> <a href="logout.php?logout">Sign Out</a>
+<a href="logout.php?logout">Sign Out</a>
 </div>
 </div>
 </div>

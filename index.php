@@ -1,33 +1,3 @@
-<?php
-session_start();
-include_once 'dbconnect.php';
-
-if(isset($_SESSION['user'])!="")
-{
-header("Location: home.php");
-}
-if(isset($_POST['login_btn']))
-{
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-$query = "SELECT * FROM user WHERE email='$email'";
-
-$response = mysql_query($query);
-$row = mysql_fetch_array($response);
-
-if($row['password'] == $password)
-{
-$_SESSION['user'] = $row['u_name'];
-header("Location: home.php");
-}
-else{
-echo("Wrong Credentials");
-}
-
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -69,7 +39,7 @@ echo("Wrong Credentials");
 </div>
 </center>
 </body>-->
-<form method="post">
+<form method="post" action='logincheck.php'>
 <form class="form-horizontal">
   <fieldset>
     
