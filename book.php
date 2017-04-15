@@ -34,22 +34,13 @@
 
 
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password,"carpooldb");
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
+session_start();
+include_once 'dbconnect.php';
 
 //$jid=$_POST['j_id'];
 
-$sql = "SELECT * FROM journey where j_id='23'";
+$sql = 'SELECT * FROM journey where j_id=$_SESSION["j_id"]';
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row

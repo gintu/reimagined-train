@@ -60,7 +60,7 @@
           </tr>
 ';
       while( $row = mysqli_fetch_array($abc) ) {
-            $_SESSION['j_id'] = $row['j_fare'];
+            $_SESSION['j_id'] = $row['j_id'];
             echo '<a><tr><td> '. $row['u_id']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '<td><button class= "btn btn-success" type="submit">Go</button></td></tr><br/>';
          }
       }
