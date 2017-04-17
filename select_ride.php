@@ -19,6 +19,34 @@
 
   </head>
   <body>
+     <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >#sharemyride</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+    <!--  <ul class="nav navbar-nav">
+        <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
+
+      </ul>
+
+-->  <ul class="nav navbar-nav navbar-right">
+    <li><a href="#" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+  </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
     <div class="jumbotron">
       <div id="headp">

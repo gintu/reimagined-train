@@ -28,4 +28,6 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+header("Location: home_join_ride.php"); /* Redirect browser */
+
 ?>

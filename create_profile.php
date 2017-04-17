@@ -44,10 +44,42 @@
     <![endif]-->
   </head>
   <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >#sharemyride</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+    <!--  <ul class="nav navbar-nav">
+        <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
+
+      </ul>
+
+-->
+<ul class="nav navbar-nav navbar-right">
+   <li><a href="profile.php" data-vivaldi-spatnav-clickable="1">View Your Profile</a></li>
+ </ul>
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+  </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a Ride</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
     <div class="jumbotron">
       <div id="headp">
-  <h1>Create Your Profile</h1>
-  <p>Let us know some details about you.</p>
+  <h1>Update Your Profile</h1>
+  <p>Keep this section uptodate.</p>
 </div>
 </div>
 <div class="container">
@@ -55,25 +87,25 @@
 <form class="form-horizontal" form method="post" action="insert_profile.php" enctype="multipart/form-data">
   <fieldset>
     <div class="form-group">
-      <label for="name" class="col-lg-2 control-label">Name</label>
+
       <div class="col-lg-10">
         <input type="text" name="u_name" class="form-control" id="u_name" placeholder="Enter your Name..">
       </div>
     </div>
     <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+
       <div class="col-lg-10">
         <input type="text" name="email" class="form-control" id="inputEmail" placeholder="Email">
       </div>
     </div>
     <div class="form-group">
-      <label for="pno" class="col-lg-2 control-label">Phone Number</label>
+
       <div class="col-lg-10">
         <input type="text" name="pno" class="form-control" id="pno" placeholder="Enter Your Phone Number..">
       </div>
     </div>
     <div class="form-group">
-      <label for="bdate" class="col-lg-2 control-label">Birthday</label>
+
       <div class="col-lg-10">
         <input type="date" name="bdate" class="form-control" id="bdate" placeholder="enter your birthday..">
       </div>
@@ -84,7 +116,7 @@
       </label>
     </div>-->
     <div class="form-group">
-      <label for="select" class="col-lg-2 control-label">Gender</label>
+
       <div class="col-lg-10">
         <select class="form-control" id="select" name="gender">
           <option>Male</option>
@@ -103,7 +135,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="textArea" class="col-lg-2 control-label">Bio</label>
+
       <div class="col-lg-10">
         <textarea class="form-control" name="bio" rows="3" id="textArea" placeholder="Enter a Short Bio of Youself.."></textarea>
     <!--    <span class="help-block">A longer block of help text that breaks onto a new line and may extend beyond one line.</span>-->
@@ -117,22 +149,13 @@
             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
             Option one is this
           </label>
-        </div>
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-            Option two can be something else
-          </label>
-        </div>
-      </div>
-    </div>-->
-    <div class="form-group">
-      <label for="textArea" class="col-lg-2 control-label">Profile Image</label>
+        </div>">
+
       <div class="col-lg-10">
         <input type="file" accept="image/*" onchange="preview_image(event)" name="uimage" class="form-control" id="uimg" >
         <div id="wrapper">
           <br>
-          <br>
+
         <img id="output_image"/>
         </div>
 

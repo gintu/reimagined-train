@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script type"javascript">
+function myFunction() {
+    alert("I am an alert box!");
+}
+</script>
   <script>
     var autocomplete;
     function initMap() {
@@ -20,6 +25,7 @@
       }
 
     </script>
+
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,6 +70,34 @@ function preview_image(event)
   </head>
 
   <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >#sharemyride</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+    <!--  <ul class="nav navbar-nav">
+        <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
+
+      </ul>
+
+-->  <ul class="nav navbar-nav navbar-right">
+    <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+  </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="index.php" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
     <div class="jumbotron">
 <div id="headp">
@@ -74,7 +108,7 @@ function preview_image(event)
 
   </div>
   </div>
-<div class="container" style='margin-left:10%;margin-right:10%;'>
+<div class="container">
 
 
     <h1>Enter the Vehicle Details</h1>
@@ -153,7 +187,6 @@ function preview_image(event)
     <input type="file" accept="image/*" onchange="preview_image(event)" name="myimage" class="form-control" id="nos" >
     <div id="wrapper">
       <br>
-      <br>
     <img id="output_image"/>
     </div>
   </div>
@@ -162,7 +195,12 @@ function preview_image(event)
     <div class="form-group" >
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default" >Cancel</button>
-        <button type="submit" class="btn btn-primary" >Submit</button>
+        <button type="submit" onclick="myfunction()" class="btn btn-success" >Save</button>
+        <script>
+        function myFunction() {
+            alert("I am an alert box!");
+        }
+        </script>
       </div>
     </div>
   </fieldset>
