@@ -8,8 +8,7 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 50%;
-        width:50%;
+        height: 100%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -67,7 +66,7 @@
     <input id="destination-input" class="controls" type="text"
         placeholder="Enter a destination location">
 
-    <div id="mode-selector" class="controls">
+  <!--  <div id="mode-selector" class="controls">
       <input type="radio" name="type" id="changemode-walking" checked="checked">
       <label for="changemode-walking">Walking</label>
 
@@ -76,9 +75,9 @@
 
       <input type="radio" name="type" id="changemode-driving">
       <label for="changemode-driving">Driving</label>
-    </div>
+    </div>-->
 
-    <div id="map"></div>
+    <div id="map" style="width:100%;height:400px;"></div>
 
     <script>
       // This example requires the Places library. Include the libraries=places
@@ -129,7 +128,7 @@
 
       // Sets a listener on a radio button to change the filter type on Places
       // Autocomplete.
-  /*    AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
         var radioButton = document.getElementById(id);
         var me = this;
         radioButton.addEventListener('click', function() {
@@ -160,13 +159,13 @@
       AutocompleteDirectionsHandler.prototype.route = function() {
         if (!this.originPlaceId || !this.destinationPlaceId) {
           return;
-        }*/
+        }
         var me = this;
 
         this.directionsService.route({
           origin: {'placeId': this.originPlaceId},
           destination: {'placeId': this.destinationPlaceId},
-          travelMode: 'DRIVING'
+          travelMode: this.travelMode
         }, function(response, status) {
           if (status === 'OK') {
             me.directionsDisplay.setDirections(response);

@@ -38,7 +38,7 @@
 
       </ul>
 
--->  
+-->
 <ul class="nav navbar-nav navbar-right">
    <li><a href="create_profile.php" data-vivaldi-spatnav-clickable="1">Update Your Profile</a></li>
  </ul>
@@ -104,12 +104,10 @@ if ($result) {
       echo "<p>".$row["bdate"]."<p>";
       echo "<p>".$row["pno"]."<p>";
       echo "<p>".$row["bio"]."<p>";
-      $image_name=$row["u_image_name"];
-      $content = $row['u_image'];
 
 //  header('Content-type: image/jpg');
       // echo $content;
-      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
+      
 
  //echo "< img src = ".$image_content." width=200 height=200 >";
 

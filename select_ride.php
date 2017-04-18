@@ -39,10 +39,10 @@
       </ul>
 
 -->  <ul class="nav navbar-nav navbar-right">
-    <li><a href="#" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+    <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
+        <li><a href="index.php" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
       </ul>
     </div>
   </div>

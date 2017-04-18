@@ -44,7 +44,14 @@
     <![endif]-->
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
+
+    <?php
+    if(!isset($_COOKIE[$cookie_name])) {
+        header('Location :home_join_ride.php');
+    }
+    session_start();
+    echo $_SESSION["uid"]; ?>
+        <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -86,18 +93,18 @@
 
 <form class="form-horizontal" form method="post" action="insert_profile.php" enctype="multipart/form-data">
   <fieldset>
-    <div class="form-group">
+  <!--  <div class="form-group">
 
-      <div class="col-lg-10">
+     <div class="col-lg-10">
         <input type="text" name="u_name" class="form-control" id="u_name" placeholder="Enter your Name..">
       </div>
-    </div>
-    <div class="form-group">
+    </div>-->
+    <!--<div class="form-group">
 
       <div class="col-lg-10">
         <input type="text" name="email" class="form-control" id="inputEmail" placeholder="Email">
       </div>
-    </div>
+    </div>-->
     <div class="form-group">
 
       <div class="col-lg-10">
@@ -134,6 +141,8 @@
         </select> -->
       </div>
     </div>
+
+
     <div class="form-group">
 
       <div class="col-lg-10">
@@ -149,18 +158,19 @@
             <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
             Option one is this
           </label>
-        </div>">
-
+        </div>">-->
+<div class="form-group">
       <div class="col-lg-10">
         <input type="file" accept="image/*" onchange="preview_image(event)" name="uimage" class="form-control" id="uimg" >
         <div id="wrapper">
           <br>
 
         <img id="output_image"/>
+        <br>
         </div>
-
+</div>
       </div>
-     </div>
+
 
       <!--<input type="file" accept="image/*" onchange="preview_image(event)">
       <img id="output_image"/>
@@ -172,9 +182,11 @@
         <button type="submit" class="btn btn-success">Save</button>
       </div>
     </div>
+
   </fieldset>
 </form>
 </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

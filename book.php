@@ -105,14 +105,16 @@ if ($result) {
 
       echo "<h1>"."Offered by"."</h1>"."<br>";
 echo "<blockquote> ";
-      echo "Name:".$row["u_name"]."<br>"."Gender:".$row["gender"]."<br>"."Bio:".$row["bio"]."<br>";
+echo '<img src="uploads/'.$row['u_image_name'].'" width="300px" >';
+
+      echo "<br>Name:".$row["u_name"]."<br>"."Gender:".$row["gender"]."<br>"."Bio:".$row["bio"]."<br>";
 
 echo "</blockquote>";
     }
 } else {
     echo "0 results";
 }
-$sql = "SELECT * FROM vehicle where v_id='1' ";
+$sql = "SELECT * FROM vehicle where v_id='60' ";
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row
@@ -121,7 +123,11 @@ if ($result) {
 
       echo "<h1>"."Vehicle Description"."</h1>";
       echo "<blockquote> ";
- echo "Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description".$row["v_desc"];
+      echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" >';
+ echo "<br>Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description".$row["v_desc"]."<br>";
+// echo $row["v_image_name"];
+ //echo "<img src='uploads/".$row["v_image_name"]."'/>";
+
 echo "</blockquote>";
     }
 } else {

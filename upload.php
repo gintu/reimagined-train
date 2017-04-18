@@ -1,25 +1,4 @@
 <?php
-
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password,"carpooldb");
-
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
-
-$mname=$_POST['mname'];
-$rno=$_POST['rno'];
-$vdesc=$_POST['vdesc'];
-$nos=$_POST['nos'];
-$imagename=$_FILES["myimage"]["name"];
-
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["myimage"]["name"]);
 $uploadOk = 1;
@@ -41,7 +20,7 @@ if (file_exists($target_file)) {
     $uploadOk = 0;
 }
 // Check file size
-if ($_FILES["myimage"]["size"] > 10000000) {
+if ($_FILES["myimage"]["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -57,22 +36,9 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["myimage"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["myimage"]["name"]). " has been uploaded.";
+        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-
-
-//$imagetmp=addslashes (file_get_contents($_FILES['myimage']['tmp_name']));
-
-$sql = "INSERT INTO vehicle (v_model, v_rno, v_desc,v_seat,v_image_name) VALUES ('$mname', '$rno', '$vdesc','$nos','$imagename')";
-
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully ack";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-//header("Location: home_join_ride.php"); /* Redirect browser */
-
 ?>

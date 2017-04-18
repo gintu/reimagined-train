@@ -184,7 +184,7 @@ function preview_image(event)
 <div class="form-group">
   <div class="col-lg-10">
     <!--<input type="file" name="myimage" class="form-control" id="nos" >-->
-    <input type="file" accept="image/*" onchange="preview_image(event)" name="myimage" class="form-control" id="nos" >
+    <input type="file" accept="image/*" onchange="preview_image(event)" name="myimage" class="form-control" id="myimage" >
     <div id="wrapper">
       <br>
     <img id="output_image"/>
@@ -195,7 +195,7 @@ function preview_image(event)
     <div class="form-group" >
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default" >Cancel</button>
-        <button type="submit" onclick="myfunction()" class="btn btn-success" >Save</button>
+        <button type="submit" onclick="myfunction()" class="btn btn-success" value="Upload Image" >Save</button>
         <script>
         function myFunction() {
             alert("I am an alert box!");

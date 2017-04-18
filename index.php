@@ -6,6 +6,7 @@ include_once 'User.php';
 if(isset($_GET['code'])){
 	$gClient->authenticate($_GET['code']);
 	$_SESSION['token'] = $gClient->getAccessToken();
+
 	header('Location: ' . filter_var($redirectURL, FILTER_SANITIZE_URL));
 }
 
@@ -19,11 +20,16 @@ if ($gClient->getAccessToken()) {
 
 	//Initialize User class
 	$user = new User();
+	$cookie_name = "user";
+$cookie_value = $gpUserProfile['given_name'];
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 
 	//Insert or update user data to the database
+$_SESSION["uid"] = $gpUserProfile['id'];
     $gpUserData = array(
         'oauth_provider'=> 'google',
         'oauth_uid'     => $gpUserProfile['id'],
+
         'first_name'    => $gpUserProfile['given_name'],
         'last_name'     => $gpUserProfile['family_name'],
         'email'         => $gpUserProfile['email'],
@@ -39,7 +45,7 @@ if ($gClient->getAccessToken()) {
 
 	//Render facebook profile data
     if(!empty($userData)){
-        $output = '<h1>Google+ Profile Details </h1>';
+      $output = '<h1>Google+ Profile Details </h1>';
         $output .= '<img src="'.$userData['picture'].'" width="300" height="220">';
         $output .= '<br/>Google ID : ' . $userData['oauth_uid'];
         $output .= '<br/>Name : ' . $userData['first_name'].' '.$userData['last_name'];
@@ -47,6 +53,10 @@ if ($gClient->getAccessToken()) {
         $output .= '<br/>Gender : ' . $userData['gender'];
         $output .= '<br/>Locale : ' . $userData['locale'];
         $output .= '<br/>Logged in with : Google';
+
+
+
+
       //  $output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Google+ Page</a>';
       //  $output .= '<br/>Logout from <a href="logout.php">Google</a>';
     }else{
@@ -66,7 +76,7 @@ if ($gClient->getAccessToken()) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>connect</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -120,6 +130,8 @@ if ($gClient->getAccessToken()) {
 </div>
 
 <div class="container"><?php echo $output; ?></div>
+<a href="create_profile.php">update</a>
+<?php echo $_SESSION["uid"]; ?>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
