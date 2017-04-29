@@ -6,6 +6,7 @@ include_once 'User.php';
 if(isset($_GET['code'])){
 	$gClient->authenticate($_GET['code']);
 	$_SESSION['token'] = $gClient->getAccessToken();
+	$redirectURL='profilecheck.php';
 
 	header('Location: ' . filter_var($redirectURL, FILTER_SANITIZE_URL));
 }
@@ -20,9 +21,9 @@ if ($gClient->getAccessToken()) {
 
 	//Initialize User class
 	$user = new User();
-	$cookie_name = "user";
-$cookie_value = $gpUserProfile['given_name'];
-setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+//$cookie_name = "user";
+//$cookie_value = $gpUserProfile['given_name'];
+//setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 
 	//Insert or update user data to the database
 $_SESSION["uid"] = $gpUserProfile['id'];
@@ -35,8 +36,8 @@ $_SESSION["uid"] = $gpUserProfile['id'];
         'email'         => $gpUserProfile['email'],
     //    'gender'        => $gpUserProfile['gender'],
         'locale'        => $gpUserProfile['locale'],
-        'picture'       => $gpUserProfile['picture'],
-        'link'          => $gpUserProfile['link']
+        'picture'       => $gpUserProfile['picture']
+        //'link'          => $gpUserProfile['link']
     );
     $userData = $user->checkUser($gpUserData);
 
@@ -45,14 +46,14 @@ $_SESSION["uid"] = $gpUserProfile['id'];
 
 	//Render facebook profile data
     if(!empty($userData)){
-      $output = '<h1>Google+ Profile Details </h1>';
-        $output .= '<img src="'.$userData['picture'].'" width="300" height="220">';
-        $output .= '<br/>Google ID : ' . $userData['oauth_uid'];
+      $output = '<h1>Details obtained from google</h1><h4>because we care about your privacy</h4><br><blockquote>';
+        //$output .= '<img src="'.$userData['picture'].'" width="300" height="220">';
+        $output .= '<div class="container">Google ID : ' . $userData['oauth_uid'];
         $output .= '<br/>Name : ' . $userData['first_name'].' '.$userData['last_name'];
         $output .= '<br/>Email : ' . $userData['email'];
-        $output .= '<br/>Gender : ' . $userData['gender'];
+        //$output .= '<br/>Gender : ' . $userData['gender'];
         $output .= '<br/>Locale : ' . $userData['locale'];
-        $output .= '<br/>Logged in with : Google';
+        $output .= '<br/>Logged in with : Google<br></blockquote></div>';
 
 
 
@@ -64,7 +65,7 @@ $_SESSION["uid"] = $gpUserProfile['id'];
     }
 } else {
 	$authUrl = $gClient->createAuthUrl();
-	$output = '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><img src="images/glogin.png" alt=""/></a>';
+	$output = '<br><br><center><a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="btn btn-success" >Connect with Google</a></center>';
 }
 ?>
 
@@ -111,11 +112,11 @@ $_SESSION["uid"] = $gpUserProfile['id'];
     </ul>
 
 -->  <ul class="nav navbar-nav navbar-right">
-  <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+  <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a ride</a></li>
 </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1">Logout</a></li>
-    </ul>
+  <!--  <ul class="nav navbar-nav navbar-right">
+			<li><a href="logout.php" data-vivaldi-spatnav-clickable="1">Logout</a></li>
+		</ul>-->
   </div>
 </div>
 </nav>
@@ -124,18 +125,17 @@ $_SESSION["uid"] = $gpUserProfile['id'];
 	<div id="headp">
 
 
-<h1>Connect with Google</h1>
-<p>This ensures your authenticity.</p>
+<h1>Share empty seats of your ride!</h1>
+<p>#made_with_love_in_RIT.</p>
 </div>
 </div>
 
 <div class="container"><?php echo $output; ?></div>
-<a href="create_profile.php">update</a>
-<?php echo $_SESSION["uid"]; ?>
-
+<!--<a href="create_profile.php">update</a> -->
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

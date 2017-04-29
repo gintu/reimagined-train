@@ -62,6 +62,7 @@
 
 
 <?php
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -76,13 +77,12 @@ if (!$conn) {
 
 
 //$jid=$_POST['j_id'];
-
-$sql = "SELECT * FROM journey where j_id='23'";
+$result12 = $conn->query($_SESSION['query12']);
+$sql = 'SELECT * FROM journey where j_id= 23';
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-
       echo "<h1>Ride Summary</h1>";
 echo "<blockquote> ";
        echo "Starting Point: ". $row["j_start"]."<br>". "Destination: " . $row["j_finish"]."<br>". "Date: " . $row["j_date"]."<br>".  "Time: " . $row["j_time"]."<br>". "Journey Description: " . $row["j_desc"]. "<br>";
@@ -96,7 +96,7 @@ echo "</blockquote>";
     echo "0 results";
 }
 
-$sql = "SELECT * FROM user where u_id='1'";
+$sql = "SELECT * FROM users where id='1'";
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row
@@ -105,9 +105,11 @@ if ($result) {
 
       echo "<h1>"."Offered by"."</h1>"."<br>";
 echo "<blockquote> ";
-echo '<img src="uploads/'.$row['u_image_name'].'" width="300px" >';
+echo '<img src="uploads/karthik.jpg" width="300px" >';
 
-      echo "<br>Name:".$row["u_name"]."<br>"."Gender:".$row["gender"]."<br>"."Bio:".$row["bio"]."<br>";
+      echo "<br>Name:".$row["first_name"]." ".$row["last_name"]."<br>";
+      echo "<p>".$row["email"]."</p>";
+      echo "<p><a href= '".$row["link"]."' class='btn btn-success'>Google+ profile</a><p>";
 
 echo "</blockquote>";
     }
@@ -122,9 +124,11 @@ if ($result) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
 
       echo "<h1>"."Vehicle Description"."</h1>";
+      //echo $_SESSION['query12'];
       echo "<blockquote> ";
-      echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" >';
- echo "<br>Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description".$row["v_desc"]."<br>";
+    //  echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" >';
+    echo '<img src="uploads/wallhaven-173882.jpg" width="300px" >';
+ echo "<br>Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description:".$row["v_desc"]."<br>";
 // echo $row["v_image_name"];
  //echo "<img src='uploads/".$row["v_image_name"]."'/>";
 
@@ -139,12 +143,13 @@ $conn->close();
 <br />
 <br />
 <form class="form-horizontal">
-  <form method="post" action="insert_booking.php">
-  <div class="form-group">
-    <!-- <label for="inputEmail" class="col-lg-2 control-label">Enter the number of seats required</label>-->
+  <form method="post" action="booking_confirmed.php">
+<!--  <div class="form-group">
+ <label for="inputEmail" class="col-lg-2 control-label">Enter the number of seats required</label>
      <div class="col-lg-10">
        <input type="number" name="bookeds" class="form-control" id="inputseat" placeholder="Number of Seats Required">
      </div>
+     -->
    </div>
    <br />
    <br />
@@ -152,7 +157,7 @@ $conn->close();
    <div class="form-group">
          <div class="col-lg-10 col-lg-offset-2">
            <button type="reset" class="btn btn-default">Cancel</button>
-           <button type="submit" class="btn btn-success">Book!</button>
+           <a href='booking_confirmed.php' type="submit" class="btn btn-success">Book!</a>
          </div>
        </div>
 

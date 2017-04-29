@@ -23,18 +23,25 @@
     </script>
     <script>
 function validateForm() {
-    var x = document.forms["myForm"]["j_start"].value;
-    if (x == "") {
+    var a = document.forms["regss"]["j_start"].value;
+	 var b = document.forms["regss"]["j_finish"].value;
+	  var c = document.forms["regss"]["j_date"].value;
+	if ((a==null || a=="") && (b==null || b=="") && (c==null || c==""))
+  {
+  alert("All Field must be filled out");
+  return false;
+  }
+    if (a == "" || a==null) {
         alert("starting location must be filled out");
         return false;
     }
-    var y = document.forms["myForm"]["j_finish"].value;
-    if (y == "") {
+
+    if (b == "" || b==null) {
         alert("finishing point must be filled out");
         return false;
     }
-    var z = document.forms["myForm"]["j_date"].value;
-    if (z == "") {
+
+    if (c == "" || c==null) {
         alert("date must be filled out");
         return false;
     }
@@ -81,7 +88,7 @@ function validateForm() {
     <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="profile.php" data-vivaldi-spatnav-clickable="1">You</a></li>
+        <li><a href="index.php" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
       </ul>
     </div>
   </div>
@@ -98,7 +105,7 @@ function validateForm() {
 <div class="container">
 
 
-  <form name="myform" class="form-horizontal" onsubmit="return validateForm()" method='post' action = 'select_ride.php'>
+  <form name="regss" class="form-horizontal" onsubmit="return validateForm()" method='post' action = 'select_ride.php'>
     <fieldset>
       <div class="form-group">
         <div class="col-lg-10">
@@ -115,7 +122,7 @@ function validateForm() {
           <input type="date" class="form-control" name="j_date" id="JDate" placeholder="Date">
         </div>
       </div>
-        <button type="submit" class="btn btn-success" value="submit">Search</button>
+        <button type="submit" onclick="validateForm()" class="btn btn-success" value="submit">Search</button>
     </fieldset>
   </form><br />
   <br/><br />

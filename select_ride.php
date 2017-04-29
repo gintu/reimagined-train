@@ -89,7 +89,11 @@
 ';
       while( $row = mysqli_fetch_array($abc) ) {
             $_SESSION['j_id'] = $row['j_fare'];
-            echo '<a><tr><td> '. $row['u_id']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '<td><button class= "btn btn-success" type="submit">Go</button></td></tr><br/>';
+            $query1= 'select * from users where id='.$row["u_id"];
+            $result1 = mysqli_query($conn,$query1);
+            $_SESSION['query12']='insert into book values('.$_SESSION['uid'].','.$row["j_id"].')';
+            $row1 = mysqli_fetch_array($result1);      
+            echo '<a><tr><td> '. $row1['first_name']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '<td><button class= "btn btn-success" type="submit">Go</button></td></tr><br/>';
          }
       }
 ?>

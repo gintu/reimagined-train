@@ -45,12 +45,7 @@
   </head>
   <body>
 
-    <?php
-    if(!isset($_COOKIE[$cookie_name])) {
-        header('Location :home_join_ride.php');
-    }
-    session_start();
-    echo $_SESSION["uid"]; ?>
+  
         <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">

@@ -33,6 +33,51 @@
         }
       }
 
+
+	  	  function validateForm()
+{
+var a=document.forms["regg"]["start"].value;
+var b=document.forms["regg"]["finish"].value;
+var c=document.forms["regg"]["date"].value;
+var d=document.forms["regg"]["time"].value;
+var e=document.forms["regg"]["fare"].value;
+
+if ((a==null || a=="") && (b==null || b=="") && (c==null || c=="") && (d==null || d=="") && (e==null || e==""))
+  {
+  alert("All Field must be filled out");
+  return false;
+  }
+	if (a==null || a=="")
+  {
+  alert("Starting point must be filled out");
+  return false;
+  }
+if (b==null || b=="")
+  {
+  alert("Destinaton must be filled out");
+  return false;
+  }
+
+  if (c==null || c=="")
+  {
+  alert("Date must be filled out");
+  return false;
+  }
+
+  if (d==null || d=="")
+  {
+  alert("Time must be filled out");
+  return false;
+  }
+  if (e==null || e=="")
+  {
+  alert("Fare must be filled out");
+  return false;
+  }
+}
+
+
+
     </script>
   </head>
   <nav class="navbar navbar-inverse">
@@ -58,7 +103,7 @@
   <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a Ride</a></li>
   </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="index.php" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
+      <li><a href="index.php" data-vivaldi-spatnav-clickable="1">You</a></li>
     </ul>
   </div>
   </div>
@@ -81,7 +126,7 @@
     <br>
     <br>
 
-    <form class="form-horizontal" form method="post" action="insert_journey.php">
+    <form class="form-horizontal" name="regg" onsubmit="return validateForm()" form method="post" action="insert_journey.php">
   <fieldset>
 
 
@@ -141,7 +186,7 @@
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-success">Go to Next Step</button>
+        <button type="submit" onsubmit="validateForm()" class="btn btn-success">Go to Next Step</button>
       </div>
     </div>
   </fieldset>

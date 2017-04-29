@@ -72,7 +72,7 @@ session_start();
 //$imagetmp=addslashes (file_get_contents($_FILES['uimage']['tmp_name']));
 echo $_SESSION['uid'];
 
-$sql = "INSERT INTO users (bdate,pno,gender,bio,u_image_name) VALUES ('$bdate','$pno','$gender','$bio','$imagename') where oauth_uid=$_SESSION['uid']";
+$sql = "INSERT INTO users (bdate,pno,gender,bio,u_image_name) VALUES ('$bdate','$pno','$gender','$bio','$imagename') ";
 
 
 if ($conn->query($sql) === TRUE) {

@@ -24,6 +24,34 @@ function myFunction() {
         }
       }
 
+	  function validateForm()
+{
+var a=document.forms["reg"]["mname"].value;
+var b=document.forms["reg"]["rno"].value;
+var c=document.forms["reg"]["nos"].value;
+
+if ((a==null || a=="") && (b==null || b=="") && (c==null || c==""))
+  {
+  alert("All Field must be filled out");
+  return false;
+  }
+	if (a==null || a=="")
+  {
+  alert("Model name must be filled out");
+  return false;
+  }
+if (b==null || b=="")
+  {
+  alert("Registration number must be filled out");
+  return false;
+  }
+if (c==null || c=="")
+  {
+  alert("Number of seats must be filled out");
+  return false;
+  }
+}
+
     </script>
 
 
@@ -90,10 +118,10 @@ function preview_image(event)
       </ul>
 
 -->  <ul class="nav navbar-nav navbar-right">
-    <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+    <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Find Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.php" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
+        <li><a href="index.php" data-vivaldi-spatnav-clickable="1">You</a></li>
       </ul>
     </div>
   </div>
@@ -114,7 +142,7 @@ function preview_image(event)
     <h1>Enter the Vehicle Details</h1>
     <br/>
 
-    <form class="form-horizontal" form method="post" action="insert_vehicle.php" enctype="multipart/form-data">
+    <form name="reg" class="form-horizontal" onsubmit="return validateForm()" form method="post" action="insert_vehicle.php" enctype="multipart/form-data">
   <fieldset>
 
 
@@ -127,7 +155,7 @@ function preview_image(event)
 
     <div class="form-group">
       <div class="col-lg-10">
-        <input type="text" name="rno" class="form-control" id="rno" placeholder="Registraion Number" >
+        <input type="text" name="rno"  pattern="[A-Z]{2}\s[0-9|\s]{1,2}\s[A-Z|\s]{1,2}\s[0-9]{1,4}" class="form-control" id="rno" placeholder="Registraion Number eg(KL xx x xxxx)" >
       </div>
      </div>
 
@@ -195,7 +223,7 @@ function preview_image(event)
     <div class="form-group" >
       <div class="col-lg-10 col-lg-offset-2">
         <button type="reset" class="btn btn-default" >Cancel</button>
-        <button type="submit" onclick="myfunction()" class="btn btn-success" value="Upload Image" >Save</button>
+        <button type="submit" onclick="validateForm()" class="btn btn-success" value="Upload Image" >Save</button>
         <script>
         function myFunction() {
             alert("I am an alert box!");
