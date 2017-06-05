@@ -141,29 +141,34 @@ $conn->close();
 <br>
 <br />
 <br />
-  <form method="post" action="confirm_booking.php">
-<!--  <div class="form-group">
- <label for="inputEmail" class="col-lg-2 control-label">Enter the number of seats required</label>
-     <div class="col-lg-10">
-       <input type="number" name="bookeds" class="form-control" id="inputseat" placeholder="Number of Seats Required">
-     </div>
-     -->
-   </div>
-   <br />
-   <br />
-
-   <div class="form-group">
-         <div class="col-lg-10 col-lg-offset-2">
-           <button type="reset" class="btn btn-default">Cancel</button>
-           <button type="submit" class="btn btn-success">Book!</button>
-         </div>
-       </div>
-
-
-       <br>
-       <br />
-       <br />
+<form method="post" action="confirm_booking.php">
+    <blockquote>
+    <h3>Enter no: of seats to reserve</h3>
+    <input type="text" name ="rseats" id ="rseats"></input>
+    <font color="red"><br><br><?php echo $_SESSION['Message'];?></font>
+    </blockquote>
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+      <button type="reset" class="btn btn-default">Cancel</button>
+      <button type="submit" class="btn btn-success">Book!</button>
+    </div>
+  </div>
 </form>
+<!--  <div class="form-group">
+<label for="inputEmail" class="col-lg-2 control-label">Enter the number of seats required</label>
+<div class="col-lg-10">
+<input type="number" name="bookeds" class="form-control" id="inputseat" placeholder="Number of Seats Required">
+</div>
+-->
+</div>
+<br />
+<br />
+
+
+
+<br>
+<br />
+<br />
 </div>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

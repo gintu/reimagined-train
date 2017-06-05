@@ -25,6 +25,7 @@
   $servername = "localhost";
   $username = "root";
   $password = "";
+  $_SESSION['Message']="";
   $_SESSION['lselect']="login";
   if($_SESSION['uid']==null)
   {
@@ -75,10 +76,9 @@
   </div>
   </div>
   <div class='container' style='margin-left:10%;margin-right:10%;'>
-  <form method = 'post' action = <?php if($_SESSION['uid']=="") echo "loginnow.php"; else echo "book.php";?>>
   <table class="table table-striped table-hover ">
 <?php
-
+  
   // Check connection
   if (!$conn)
       die("Connection failed: " . mysqli_connect_error());
@@ -95,6 +95,7 @@
               <th>User</th>
               <th>Fare</th>
               <th>Description</th>
+              <th>Seats left</th>
               <th></th>
           </tr>
 ';
@@ -105,12 +106,11 @@
             $_SESSION['sj_id'] = $row["j_id"];
             $_SESSION['lselect']="book";
             $row1 = mysqli_fetch_array($result1);      
-            echo '<a><tr><td> '. $row1['first_name']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '</td><td><button class= "btn btn-success" type="submit">Go</button></td></tr><br/>';
+            echo '<tr><td> '. $row1['first_name']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '</td><td> '. $row['seats']. '</td><td><a href = "book.php"><button class= "btn btn-success">Go</button></a></td></tr><br/>';
          }
       }
 ?>
 </table>
-</form>
 </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
