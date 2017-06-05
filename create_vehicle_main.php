@@ -143,7 +143,7 @@
         <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Find Ride</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.php" data-vivaldi-spatnav-clickable="1"><?php echo $var;?></a></li>
+        <li><a href=<?php if($var=='Login') echo 'index.php'; else echo 'profile.php';?> data-vivaldi-spatnav-clickable="1"><?php echo $var;?></a></li>
       </ul>
       </div>
     </div>
@@ -170,7 +170,7 @@
                 echo "<p>".$row["v_model"]."</p>";
                 echo "<p>".$row["v_rno"]."</p>";
                 echo "<p>".$row["v_desc"]."</p>";
-                $_SESSION['v_id']=$row["v_id"];
+                $_SESSION['v_id'] = $row['v_id'];
                 echo "<button class= 'btn btn-success' type='submit'>Select</button>";
                 echo "</blockquote>";
             }
@@ -189,8 +189,6 @@
             <input type="text" name="mname" class="form-control" id="mname" placeholder="Model Name" >
           </div>
         </div>
-        <?php echo $_SESSION['uid']; ?>
-
         <div class="form-group">
           <div class="col-lg-10">
             <input type="text" name="rno"  pattern="[A-Z]{2}\s[0-9|\s]{1,2}\s[A-Z|\s]{1,2}\s[0-9]{1,4}" class="form-control" id="rno" placeholder="Registraion Number eg(KL xx x xxxx)" >

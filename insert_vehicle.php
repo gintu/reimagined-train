@@ -74,7 +74,19 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-
-header("Location: home_join_ride.php"); /* Redirect browser */
+$sql = 'SELECT v_id from vehicle ORDER BY v_id DESC LIMIT 1';
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$v_id = $row['v_id'];
+$sql = 'SELECT j_id from journey ORDER BY j_id DESC LIMIT 1';
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$j_id = $row['j_id'];
+$sql = "update journey set v_id =".$v_id." where j_id = ".$j_id;
+$result = $conn->query($sql);
+if($result)
+{
+header("Location: journey_added.php"); /* Redirect browser */
+}
 
 ?>

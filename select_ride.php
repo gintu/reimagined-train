@@ -82,7 +82,7 @@
   // Check connection
   if (!$conn)
       die("Connection failed: " . mysqli_connect_error());
-      $sqli = 'select * from journey where sel=1 and j_start like "%'. $_POST["j_start"].'%"';//'.'"journey.u_id = user.u_id and journey.v_id = vehicle.v_id and j_finish ="'. $_POST["j_end"].'" and j_date="'. $_POST["j_date"].'"';
+      $sqli = 'select * from journey where sel=1 and j_start like "%'. $_POST["j_start"].'%" order by j_fare';//'.'"journey.u_id = user.u_id and journey.v_id = vehicle.v_id and j_finish ="'. $_POST["j_end"].'" and j_date="'. $_POST["j_date"].'"';
       $abc = mysqli_query($conn,$sqli);
       if(!$abc)
       {
@@ -100,12 +100,12 @@
 ';
       while( $row = mysqli_fetch_array($abc) ) {
             $_SESSION['j_id'] = $row['j_id'];
-            $query1= 'select * from users where id='.$row["uid"];
+            $query1= 'select * from users where oauth_uid='.$row["uid"];
             $result1 = mysqli_query($conn,$query1);
             $_SESSION['sj_id'] = $row["j_id"];
             $_SESSION['lselect']="book";
             $row1 = mysqli_fetch_array($result1);      
-            echo '<a><tr><td> '. $row1['first_name']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '<td><button class= "btn btn-success" type="submit">Go</button></td></tr><br/>';
+            echo '<a><tr><td> '. $row1['first_name']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '</td><td><button class= "btn btn-success" type="submit">Go</button></td></tr><br/>';
          }
       }
 ?>

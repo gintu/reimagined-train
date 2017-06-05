@@ -95,7 +95,7 @@ echo "</blockquote>";
     echo "0 results";
 }
 
-$sql = "SELECT * FROM users where oauth_uid='103776891363531291681'";//.$row['uid'];
+$sql = "SELECT * FROM users where oauth_uid=".$u;
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row
@@ -115,7 +115,7 @@ echo "</blockquote>";
 } else {
     echo "0 results";
 }
-$sql = "SELECT * FROM vehicle where v_id=".$_SESSION['v_id'];
+$sql = "SELECT * FROM vehicle where v_id =".$v;
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row

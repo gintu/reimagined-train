@@ -26,5 +26,5 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-//header('Location: create_vehicle_main.php');
+header('Location: create_vehicle_main.php');
 ?>
