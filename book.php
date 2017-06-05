@@ -22,6 +22,34 @@
 
 
 <body>
+  <nav class="navbar navbar-inverse">
+<div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" >#sharemyride</a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+  <!--  <ul class="nav navbar-nav">
+      <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
+      <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
+
+    </ul>
+
+-->  <ul class="nav navbar-nav navbar-right">
+  <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+</ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="profile.php" data-vivaldi-spatnav-clickable="1">You</a></li>
+    </ul>
+  </div>
+</div>
+</nav>
   <div class="jumbotron" >
     <div id="headp">
 
@@ -34,23 +62,31 @@
 
 
 <?php
-
 session_start();
-include_once 'dbconnect.php';
+$servername = "localhost";
+$username = "root";
+$password = "";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password,"carpooldb");
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
 
 //$jid=$_POST['j_id'];
-
-$sql = 'SELECT * FROM journey where j_id=$_SESSION["j_id"]';
+$sql = 'SELECT * FROM journey where j_id='.$_SESSION["sj_id"];;
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-
       echo "<h1>Ride Summary</h1>";
 echo "<blockquote> ";
        echo "Starting Point: ". $row["j_start"]."<br>". "Destination: " . $row["j_finish"]."<br>". "Date: " . $row["j_date"]."<br>".  "Time: " . $row["j_time"]."<br>". "Journey Description: " . $row["j_desc"]. "<br>";
       //echo "<h1>".$row["u_name"]."</h1>";
-    $u=$row["u_id"];
+    $u=$row["uid"];
     $v=$row["v_id"];
 echo "</blockquote>";
 
@@ -59,7 +95,7 @@ echo "</blockquote>";
     echo "0 results";
 }
 
-$sql = "SELECT * FROM user where u_id='1'";
+$sql = "SELECT * FROM users where oauth_uid='103776891363531291681'";//.$row['uid'];
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row
@@ -68,14 +104,18 @@ if ($result) {
 
       echo "<h1>"."Offered by"."</h1>"."<br>";
 echo "<blockquote> ";
-      echo "Name:".$row["u_name"]."<br>"."Gender:".$row["gender"]."<br>"."Bio:".$row["bio"]."<br>";
+//echo '<img src="uploads/karthik.jpg" width="300px" >';
+
+      echo "<br>Name:".$row["first_name"]." ".$row["last_name"]."<br>";
+      echo "<p>".$row["email"]."</p>";
+      echo "<p><a href= '".$row["link"]."' class='btn btn-success'>Google+ profile</a><p>";
 
 echo "</blockquote>";
     }
 } else {
     echo "0 results";
 }
-$sql = "SELECT * FROM vehicle where v_id='1' ";
+$sql = "SELECT * FROM vehicle where v_id=".$_SESSION['v_id'];
 $result = $conn->query($sql);
 if ($result) {
     // output data of each row
@@ -83,8 +123,14 @@ if ($result) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
 
       echo "<h1>"."Vehicle Description"."</h1>";
+      //echo $_SESSION['query12'];
       echo "<blockquote> ";
- echo "Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description".$row["v_desc"];
+    //  echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" >';
+    //echo '<img src="uploads/wallhaven-173882.jpg" width="300px" >';
+ echo "<br>Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description:".$row["v_desc"]."<br>";
+// echo $row["v_image_name"];
+ //echo "<img src='uploads/".$row["v_image_name"]."'/>";
+
 echo "</blockquote>";
     }
 } else {
@@ -95,13 +141,13 @@ $conn->close();
 <br>
 <br />
 <br />
-<form class="form-horizontal">
-  <form method="post" action="insert_booking.php">
-  <div class="form-group">
-    <!-- <label for="inputEmail" class="col-lg-2 control-label">Enter the number of seats required</label>-->
+  <form method="post" action="confirm_booking.php">
+<!--  <div class="form-group">
+ <label for="inputEmail" class="col-lg-2 control-label">Enter the number of seats required</label>
      <div class="col-lg-10">
        <input type="number" name="bookeds" class="form-control" id="inputseat" placeholder="Number of Seats Required">
      </div>
+     -->
    </div>
    <br />
    <br />

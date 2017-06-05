@@ -20,6 +20,52 @@
   </head>
   <body>
 
+    <?php
+  session_start();
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $_SESSION['lselect']="login";
+  if($_SESSION['uid']==null)
+  {
+    $var = "Login";
+  }
+  else
+  {
+    $var = "You";
+  }
+  // Create connection
+  $conn = mysqli_connect($servername, $username, $password,"carpooldb");
+?>
+     <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >#sharemyride</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+    <!--  <ul class="nav navbar-nav">
+        <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
+
+      </ul>
+
+-->  <ul class="nav navbar-nav navbar-right">
+    <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+  </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href=<?php if($var=='You') echo 'profile.php'; else echo 'index.php'?> data-vivaldi-spatnav-clickable="1"><?php echo $var;?></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
     <div class="jumbotron">
       <div id="headp">
 
@@ -29,21 +75,14 @@
   </div>
   </div>
   <div class='container' style='margin-left:10%;margin-right:10%;'>
-  <form method = 'post' action = 'book.php'>
+  <form method = 'post' action = <?php if($_SESSION['uid']=="") echo "loginnow.php"; else echo "book.php";?>>
   <table class="table table-striped table-hover ">
-  <?php
-  session_start();
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-
-  // Create connection
-  $conn = mysqli_connect($servername, $username, $password,"carpooldb");
+<?php
 
   // Check connection
   if (!$conn)
       die("Connection failed: " . mysqli_connect_error());
-      $sqli = 'select * from journey where j_start = "'. $_POST["j_start"].'"';//'.'"journey.u_id = user.u_id and journey.v_id = vehicle.v_id and j_finish ="'. $_POST["j_end"].'" and j_date="'. $_POST["j_date"].'"';
+      $sqli = 'select * from journey where sel=1 and j_start like "%'. $_POST["j_start"].'%"';//'.'"journey.u_id = user.u_id and journey.v_id = vehicle.v_id and j_finish ="'. $_POST["j_end"].'" and j_date="'. $_POST["j_date"].'"';
       $abc = mysqli_query($conn,$sqli);
       if(!$abc)
       {
@@ -61,7 +100,12 @@
 ';
       while( $row = mysqli_fetch_array($abc) ) {
             $_SESSION['j_id'] = $row['j_id'];
-            echo '<a><tr><td> '. $row['u_id']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '<td><button class= "btn btn-success" type="submit">Go</button></td></tr><br/>';
+            $query1= 'select * from users where id='.$row["uid"];
+            $result1 = mysqli_query($conn,$query1);
+            $_SESSION['sj_id'] = $row["j_id"];
+            $_SESSION['lselect']="book";
+            $row1 = mysqli_fetch_array($result1);      
+            echo '<a><tr><td> '. $row1['first_name']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '<td><button class= "btn btn-success" type="submit">Go</button></td></tr><br/>';
          }
       }
 ?>

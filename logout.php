@@ -1,20 +1,17 @@
 <?php
-session_start();
+//Include GP config file
+include_once 'gpConfig.php';
 
-if(!isset($_SESSION['user']))
-{
-header("Location: index.php");
-}
-else if(isset($_SESSION['user'])!="")
-{
-header("Location: home.php");
-}
+//Unset token and user data from session
+unset($_SESSION['token']);
+unset($_SESSION['userData']);
 
-if(isset($_GET['logout']))
-{
+//Reset OAuth access token
+$gClient->revokeToken();
+
+//Destroy entire session
 session_destroy();
-unset($_SESSION['user']);
-header("Location: index.php");
-}
 
+//Redirect to homepage
+header("Location:index.php");
 ?>

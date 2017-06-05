@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>Profile</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,11 +19,43 @@
     <![endif]-->
   </head>
   <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >#sharemyride</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+    <!--  <ul class="nav navbar-nav">
+        <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
+
+      </ul>
+
+-->
+<ul class="nav navbar-nav navbar-right">
+   <li><a href="create_profile.php" data-vivaldi-spatnav-clickable="1">Update Your Profile</a></li>
+ </ul>
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+  </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a Ride</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
     <div class="jumbotron" >
       <div id="headp">
 
 
-  <h1>Profile</h1>
+  <h1>Your Profile</h1>
   <p>Here are all your Detalis</p>
 </div>
 </div>
@@ -31,10 +63,11 @@
 
 
 <?php
+
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-
 // Create connection
 $conn = mysqli_connect($servername, $username, $password,"carpooldb");
 
@@ -60,38 +93,131 @@ if ($conn->query($sql) === TRUE) {
 }
 */
 
-$sql = "SELECT * FROM user where u_id='18'";
+
+
+
+
+
+
+echo "
+<br><br>
+      <div>
+        <h1>Your Ride Offers</h1>
+        <p>Here's are all your offers</p>
+      </div>
+<form method='post' action='dropride.php'>";
+//echo $_SESSION['uid'];
+$sql = "SELECT * FROM journey where uid=".$_SESSION['uid'];
 $result = $conn->query($sql);
+$count=0;
 if ($result) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
+      $count++;
+      echo "<blockquote>";
+      echo "<h3> Ride #".$count."</h3>";
+      echo "<p>".$row["j_start"]."</p>";
+      echo "<p>".$row["j_finish"]."<p>";
+      echo "<p>".$row["j_date"]."<p>";
+      echo "<p>".$row["j_time"]."<p>";
 
-      echo "<h1>".$row["u_name"]."</h1>";
-      echo "<p>".$row["email"]."</p>";
-      echo "<p>".$row["bdate"]."<p>";
-      echo "<p>".$row["pno"]."<p>";
-      echo "<p>".$row["bio"]."<p>";
-      $image_name=$row["u_image_name"];
-      $content = $row['u_image'];
-
+      $_SESSION['sdj_id']=$row["j_id"];
+      echo "<button class= 'btn btn-success' type='submit'>Drop ride</button></td></tr><br/>";
+echo "</blockquote>";
 //  header('Content-type: image/jpg');
       // echo $content;
-      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
+//      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
 
  //echo "< img src = ".$image_content." width=200 height=200 >";
-
-
-
 
 
     }
 } else {
     echo "0 results";
 }
+
+$sql = "SELECT * FROM users where id=".$_SESSION['uid'];
+$result = $conn->query($sql);
+if ($result) {
+    $row = $result->fetch_assoc();
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
+      echo "<blockquote>";
+      echo '<img src="uploads/20161227_110447.jpg" width="300px" >';
+      echo '<h1>'.$row["first_name"].' '.$row["last_name"].'</h1>';
+      echo "<p>".$row["email"]."</p>";
+      echo "<p><a href= '".$row["link"]."' class='btn btn-success'>Google+ profile</a><p>";
+      echo "</blockquote>";
+
+//  header('Content-type: image/jpg');
+      // echo $content;
+//      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
+
+ //echo "< img src = ".$image_content." width=200 height=200 >";
+    }
+} else {
+    echo "0 results";
+}
+?>
+</form>
+<br><br><br><br>
+</div>
+      <div class="container">
+        <h1>Your purchased rides </h1>
+        <p>Here's are all your rides</p>
+
+<form method = "post" action="cancel_ride.php">
+<?php
+$sql = "SELECT * FROM booked,journey where booked.uid=".$_SESSION['uid'];
+$result = $conn->query($sql);
+$count=0;
+if ($result) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
+      $count++;
+      echo "<blockquote>";
+      echo "<h3> Ride #".$count."</h3>";
+      echo "<p>".$row["j_start"]."</p>";
+      echo "<p>".$row["j_finish"]."<p>";
+      echo "<p>".$row["j_date"]."<p>";
+      echo "<p>".$row["j_time"]."<p>";
+
+      $_SESSION['cj_id']=$row["j_id"];
+      echo "<button class= 'btn btn-success' type='submit'>Cancel Purchase</button></td></tr><br/>";
+echo "</blockquote>";
+/*
+$sql = "SELECT * FROM book,journey where book.u_id='31'";
+$result = $conn->query($sql);
+$count=0;
+if ($result) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";
+      $count++;
+      echo "<h1> Ride #".$count."</h1>";
+      echo "<p>".$row["j_start"]."</p>";
+      echo "<p>".$row["j_finish"]."<p>";
+      echo "<p>".$row["j_date"]."<p>";
+      echo "<p>".$row["j_time"]."<p>";
+
+//  header('Content-type: image/jpg');
+      // echo $content;
+//      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
+
+ //echo "< img src = ".$image_content." width=200 height=200 >";
+
+
+  */  }
+} else {
+    echo "0 results";
+}
 $conn->close();
 
 ?>
+</form>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
