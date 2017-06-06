@@ -3,8 +3,6 @@
 include_once 'gpConfig.php';
 include_once 'User.php';
 
-$_SESSION['uid']="";
-
 if(isset($_GET['code'])){
 	$gClient->authenticate($_GET['code']);
 	$_SESSION['token'] = $gClient->getAccessToken();
@@ -28,10 +26,7 @@ if ($gClient->getAccessToken()) {
 //setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
 
 	//Insert or update user data to the database
-
-  //ABHI :  SETTING uid AS A SESSION VARIABLE IN THE SESSION 
 $_SESSION["uid"] = $gpUserProfile['id'];
-//$_SESSION['lselect']="login";
     $gpUserData = array(
         'oauth_provider'=> 'google',
         'oauth_uid'     => $gpUserProfile['id'],
@@ -46,10 +41,10 @@ $_SESSION["uid"] = $gpUserProfile['id'];
     );
     $userData = $user->checkUser($gpUserData);
 
-	//STORING USER DATA INTO SESSION might not be required as already in db
+	//Storing user data into session
 	$_SESSION['userData'] = $userData;
-  	//Render facebook profile data 
-  //#DOUBT
+
+	//Render facebook profile data
     if(!empty($userData)){
       $output = '<h1>Details obtained from google</h1><h4>because we care about your privacy</h4><br><blockquote>';
         //$output .= '<img src="'.$userData['picture'].'" width="300" height="220">';
@@ -60,6 +55,9 @@ $_SESSION["uid"] = $gpUserProfile['id'];
         $output .= '<br/>Locale : ' . $userData['locale'];
         $output .= '<br/>Logged in with : Google<br></blockquote></div>';
 
+
+
+
       //  $output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Google+ Page</a>';
       //  $output .= '<br/>Logout from <a href="logout.php">Google</a>';
     }else{
@@ -67,78 +65,106 @@ $_SESSION["uid"] = $gpUserProfile['id'];
     }
 } else {
 	$authUrl = $gClient->createAuthUrl();
-	$output = '<br><br><center><a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="btn btn-success" >Connect with Google</a></center>';
+	$output = '<center><a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="btn btn-success wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms" >Connect with Google</a></center>';
 }
 ?>
+
 
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>connect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="Bootstrap, Landing page, Template, Registration, Landing">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Grayrids">
+    <title>the index page</title>
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/styles.css" rel="stylesheet"  />
-    <LINK REL="icon" HREF="favicon.ico">
+    <link rel="stylesheet" href="titl/css/bootstrap.min.css">
+    <link rel="stylesheet" href="titl/css/font-awesome.min.css">
+    <link rel="stylesheet" href="titl/css/line-icons.css">
+    <link rel="stylesheet" href="titl/css/owl.carousel.css">
+    <link rel="stylesheet" href="titl/css/owl.theme.css">
+    <link rel="stylesheet" href="titl/css/nivo-lightbox.css">
+    <link rel="stylesheet" href="titl/css/magnific-popup.css">
+    <link rel="stylesheet" href="titl/css/animate.css">
+    <link rel="stylesheet" href="titl/css/menu_sideslide.css">
+    <link rel="stylesheet" href="titl/css/main.css">
+    <link rel="stylesheet" href="titl/css/responsive.css">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
-<body>
-	<nav class="navbar navbar-inverse">
-<div class="container-fluid">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" >#sharemyride</a>
-  </div>
+  <body>
 
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-  <!--  <ul class="nav navbar-nav">
-      <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
-      <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
+  	<!-- Header Section Start -->
 
-    </ul>
+    <header id="video-area" data-stellar-background-ratio="0.5"style="height:100vh">
+      <div id="block" data-vide-bg="titl/video/123"></div>
 
--->  
-<ul class="nav navbar-nav navbar-right">
-  <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a ride</a></li>
-</ul>
-  <!--  <ul class="nav navbar-nav navbar-right">
-			<li><a href="logout.php" data-vivaldi-spatnav-clickable="1">Logout</a></li>
-		</ul>-->
-  </div>
-</div>
-</nav>
+      <div class="overlay overlay-2"></div>
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-md-10">
+    <br><br><br><br><br>
+            <div class="contents text-center"  style="">
 
-<div class="jumbotron" >
-	<div id="headp">
+              <h1 class="wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="0.3s">#ShareMyRide</h1>
+              <p class="lead  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="400ms">#made_with_love_in_rit</p>
+            <!--  <a href="#" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms"> Sign In With Google</a>-->
+						<div class="container"><?php echo $output; ?></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Header Section End -->
 
 
-<h1>Share empty seats of your ride!</h1>
-<p>#made_with_love_in_RIT.</p>
-</div>
-</div>
 
-<div class="container"><?php echo $output; ?></div>
-<!--<a href="create_profile.php">update</a> -->
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="js/bootstrap.min.js"></script>
 
-</body>
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+      <i class="lnr lnr-arrow-up"></i>
+    </a>
+
+    <div id="loader">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
+		<!--<div class="container"><?php echo $output; ?></div>-->
+		<!--<a href="create_profile.php">update</a> -->
+			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<!-- Include all compiled plugins (below), or include individual files as needed -->
+			<script src="js/bootstrap.min.js"></script>
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="titl/js/jquery-min.js"></script>
+    <script src="titl/js/tether.min.js"></script>
+    <script src="titl/js/bootstrap.min.js"></script>
+    <script src="titl/js/classie.js"></script>
+    <script src="titl/js/mixitup.min.js"></script>
+    <script src="titl/js/nivo-lightbox.js"></script>
+    <script src="titl/js/owl.carousel.min.js"></script>
+    <script src="titl/js/jquery.stellar.min.js"></script>
+    <script src="titl/js/jquery.nav.js"></script>
+    <script src="titl/js/smooth-scroll.js"></script>
+    <script src="titl/js/smooth-on-scroll.js"></script>
+    <script src="titl/js/wow.js"></script>
+    <script src="titl/js/menu.js"></script>
+    <script src="titl/js/jquery.vide.js"></script>
+    <script src="titl/js/jquery.counterup.min.js"></script>
+    <script src="titl/js/jquery.magnific-popup.min.js"></script>
+    <script src="titl/js/waypoints.min.js"></script>
+    <script src="titl/js/form-validator.min.js"></script>
+    <script src="titl/js/contact-form-script.js"></script>
+    <script src="titl/js/main.js"></script>
+
+  </body>
 </html>

@@ -100,14 +100,57 @@ if ($conn->query($sql) === TRUE) {
 
 
 
-$sql = "SELECT * FROM users where oauth_uid=".$_SESSION['uid'];
+
+
+
+
+//echo $_SESSION['uid'];
+$sql = "SELECT * FROM journey where uid=".$_SESSION['uid'];
+$result = $conn->query($sql);
+$count=0;
+if ($result) {
+    // output data of each row
+echo "
+<br><br>
+      <div>
+        <h1>Your Ride Offers</h1>
+        <p>Here's are all your offers</p>
+      </div>
+<form method='post' action='dropride.php'><br><br>";
+    while($row = $result->fetch_assoc()) {
+      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
+      $count++;
+      echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
+      echo "<h3> Ride #".$count."</h3>";
+      echo "<p>".$row["j_start"]."</p>";
+      echo "<p>".$row["j_finish"]."<p>";
+      echo "<p>".$row["j_date"]."<p>";
+      echo "<p>".$row["j_time"]."<p>";
+
+      $_SESSION['sdj_id']=$row["j_id"];
+      echo "<button class= 'btn btn-success' type='submit'>Drop ride</button></td></tr><br/>";
+echo "</blockquote></div>";
+//  header('Content-type: image/jpg');
+      // echo $content;
+//      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
+
+ //echo "< img src = ".$image_content." width=200 height=200 >";
+
+
+    }
+} else {
+    echo "<h3> Oh. This work like Give and take bro..<br>";
+}
+
+$sql = "SELECT * FROM users where id=".$_SESSION['uid'];
 $result = $conn->query($sql);
 if ($result) {
+    $row = $result->fetch_assoc();
     // output data of each row
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       echo "<blockquote>";
-      echo '<img src="uploads/pikup_choice.png" width="100px" >';
+      echo '<img src="uploads/20161227_110447.jpg" width="300px" >';
       echo '<h1>'.$row["first_name"].' '.$row["last_name"].'</h1>';
       echo "<p>".$row["email"]."</p>";
       echo "<p><a href= '".$row["link"]."' class='btn btn-success'>Google+ profile</a><p>";
@@ -122,65 +165,32 @@ if ($result) {
 } else {
     echo "0 results";
 }
-
-
-
-
-//echo $_SESSION['uid'];
-$sql = "SELECT * FROM journey where uid=".$_SESSION['uid'];
-$result = $conn->query($sql);
-$count=0;
-        echo "
-                <br><br>
-                <div>
-                  <h1>Your Ride Offers</h1>
-                  <p>Here's are all your offers</p>
-                </div>";
-        // output data of each row
-    while($row = $result->fetch_assoc()) {
-
-      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
-      echo "<form method='post' action='dropride.php?dj_id=".$row["j_id"]."'>";
-      $count++;
-      echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
-      echo "<h3> Ride #".$count."</h3>";
-      echo "<p>".$row["j_start"]."</p>";
-      echo "<p>".$row["j_finish"]."<p>";
-      echo "<p>".$row["j_date"]."<p>";
-      echo "<p>".$row["j_time"]."<p>";
-      echo "<p style='color:yellow;'> Seats Left :".$row["seats"]."<p>";
-      echo "<button class= 'btn btn-success' type='submit'>Drop ride</button></td></tr>";
-echo "</blockquote></div>";
-//  header('Content-type: image/jpg');
-      // echo $content;
-//      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
-
- //echo "< img src = ".$image_content." width=200 height=200 >";
- 
-} 
 ?>
 </form>
+<br><br><br><br>
 </div>
-
       <div class="container">
+<form method = "post" action="cancel_ride.php">
 <?php
-$sql = "SELECT booked.seats as seats,j_start,j_finish,j_date,j_time,jid from booked,journey where booked.uid=".$_SESSION['uid']." and booked.jid = journey.j_id";
+$sql = "SELECT * FROM booked,journey where booked.uid=".$_SESSION['uid']." and booked.jid = journey.j_id";
 $result = $conn->query($sql);
 $count=0;
+if ($result) {
+
     echo "<h1>Your purchased rides </h1>
         <p>Here's are all your rides</p>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       $count++;
-      echo "<form method = 'post' action='cancel_ride.php?cj_id=".$row['jid']."'>";
       echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
       echo "<h3> Ride #".$count."</h3>";
       echo "<p>".$row["j_start"]."</p>";
       echo "<p>".$row["j_finish"]."<p>";
       echo "<p>".$row["j_date"]."<p>";
       echo "<p>".$row["j_time"]."<p>";
-      echo "<p style='color:cyan;'>Reserved ".$row["seats"]." seat<p>";      
+
+      $_SESSION['cj_id']=$row["j_id"];
       echo "<button class= 'btn btn-success' type='submit'>Cancel Purchase</button></td></tr><br/>";
 echo "</blockquote></div>";
 /*
@@ -206,7 +216,11 @@ if ($result) {
 
 
   */  }
-
+}
+else
+{
+    echo "<h3>Seems you haven't purchased any rides </h3><br><br><br>";
+}
 $conn->close();
 
 ?>

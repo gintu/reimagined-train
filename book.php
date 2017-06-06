@@ -175,7 +175,7 @@ $result = $conn->query($sql);
 if ($result) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-      /*  echo "<h1> "."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
+      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
 
       echo "<div style='float:left;margin:0 0 40px 40px;'><blockquote><h1>"."Vehicle Description"."</h1> ";
     //  echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" >';
