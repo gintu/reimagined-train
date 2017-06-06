@@ -13,8 +13,8 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$query1="delete from journey where j_id = ".$_SESSION['sdj_id'];
-$query2="delete from booked where jid=".$_SESSION['sdj_id'];
+$query1="delete from journey where j_id = ".$_GET['dj_id'];
+$query2="delete from booked where jid=".$_GET['dj_id'];
 $result = $conn->query($query1);
 $result = $conn->query($query2);
 header("Location:profile.php");
