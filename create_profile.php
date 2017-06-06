@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet"  />
+    <link rel='icon' href='favicon.ico'>
     <script type='text/javascript'>
     function preview_image(event)
     {

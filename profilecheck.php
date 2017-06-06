@@ -30,6 +30,10 @@ else {
 	else 
 	if($_SESSION['lselect']=="join_ride")
 		  header("Location:home_join_ride.php");
+	else
+	{
+		header("Location:profile.php");
+	}
 
 
 }

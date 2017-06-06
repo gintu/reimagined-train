@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet"  />
+<link rel='icon' href='favicon.ico'>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -118,7 +119,11 @@ if (!$conn) {
 
     </ul>
 
-  -->  <ul class="nav navbar-nav navbar-right">
+  -->  
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
+  </ul>
+  <ul class="nav navbar-nav navbar-right">
   <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a Ride</a></li>
   </ul>
     <ul class="nav navbar-nav navbar-right">

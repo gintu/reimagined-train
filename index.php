@@ -31,7 +31,7 @@ if ($gClient->getAccessToken()) {
 
   //ABHI :  SETTING uid AS A SESSION VARIABLE IN THE SESSION 
 $_SESSION["uid"] = $gpUserProfile['id'];
-$_SESSION['lselect']="login";
+//$_SESSION['lselect']="login";
     $gpUserData = array(
         'oauth_provider'=> 'google',
         'oauth_uid'     => $gpUserProfile['id'],
@@ -113,7 +113,8 @@ $_SESSION['lselect']="login";
 
     </ul>
 
--->  <ul class="nav navbar-nav navbar-right">
+-->  
+<ul class="nav navbar-nav navbar-right">
   <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a ride</a></li>
 </ul>
   <!--  <ul class="nav navbar-nav navbar-right">

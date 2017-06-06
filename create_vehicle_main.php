@@ -66,6 +66,8 @@
       <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet"  />
   <script type='text/javascript'>
+  <link rel='icon' href='favicon.ico'>
+
   function preview_image(event)
   {
    var reader = new FileReader();
@@ -103,6 +105,7 @@
     <?php
 
     session_start();
+    include_once 'accesscheck.php';
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -139,6 +142,10 @@
 </ul>
 
 -->  
+<ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
+  </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Find Ride</a></li>
       </ul>

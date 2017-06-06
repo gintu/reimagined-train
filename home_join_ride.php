@@ -56,7 +56,7 @@ function validateForm() {
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet"  />
-
+    <link rel='icon' href='favicon.ico'>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -68,7 +68,7 @@ function validateForm() {
   <?php
   session_start();
   if($_SESSION['uid']=='')
-    $var = "loginnow.php";
+    $var = "index.php";
   else
     $var = "profile.php";
   ?>
@@ -91,7 +91,15 @@ function validateForm() {
 
       </ul>
 
--->  <ul class="nav navbar-nav navbar-right">
+-->
+<?php
+if($_SESSION['uid']!=""){
+echo '<ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
+  </ul>';
+}
+?>
+ <ul class="nav navbar-nav navbar-right">
     <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">

@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet"  />
+    <link rel='icon' href='favicon.ico'>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,6 +40,9 @@
       </ul>
 
 -->
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
+  </ul>
 <ul class="nav navbar-nav navbar-right">
    <li><a href="create_profile.php" data-vivaldi-spatnav-clickable="1">Update Your Profile</a></li>
  </ul>
@@ -65,6 +69,7 @@
 <?php
 
 session_start();
+include_once 'accesscheck.php';
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -99,23 +104,23 @@ if ($conn->query($sql) === TRUE) {
 
 
 
-echo "
-<br><br>
-      <div>
-        <h1>Your Ride Offers</h1>
-        <p>Here's are all your offers</p>
-      </div>
-<form method='post' action='dropride.php'>";
 //echo $_SESSION['uid'];
 $sql = "SELECT * FROM journey where uid=".$_SESSION['uid'];
 $result = $conn->query($sql);
 $count=0;
 if ($result) {
     // output data of each row
+echo "
+<br><br>
+      <div>
+        <h1>Your Ride Offers</h1>
+        <p>Here's are all your offers</p>
+      </div>
+<form method='post' action='dropride.php'><br><br>";
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       $count++;
-      echo "<blockquote>";
+      echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
       echo "<h3> Ride #".$count."</h3>";
       echo "<p>".$row["j_start"]."</p>";
       echo "<p>".$row["j_finish"]."<p>";
@@ -124,7 +129,7 @@ if ($result) {
 
       $_SESSION['sdj_id']=$row["j_id"];
       echo "<button class= 'btn btn-success' type='submit'>Drop ride</button></td></tr><br/>";
-echo "</blockquote>";
+echo "</blockquote></div>";
 //  header('Content-type: image/jpg');
       // echo $content;
 //      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
@@ -134,7 +139,7 @@ echo "</blockquote>";
 
     }
 } else {
-    echo "0 results";
+    echo "<h3> Oh. This work like Give and take bro..<br>";
 }
 
 $sql = "SELECT * FROM users where id=".$_SESSION['uid'];
@@ -165,20 +170,20 @@ if ($result) {
 <br><br><br><br>
 </div>
       <div class="container">
-        <h1>Your purchased rides </h1>
-        <p>Here's are all your rides</p>
-
 <form method = "post" action="cancel_ride.php">
 <?php
-$sql = "SELECT * FROM booked,journey where booked.uid=".$_SESSION['uid'];
+$sql = "SELECT * FROM booked,journey where booked.uid=".$_SESSION['uid']." and booked.jid = journey.j_id";
 $result = $conn->query($sql);
 $count=0;
 if ($result) {
+
+    echo "<h1>Your purchased rides </h1>
+        <p>Here's are all your rides</p>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       $count++;
-      echo "<blockquote>";
+      echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
       echo "<h3> Ride #".$count."</h3>";
       echo "<p>".$row["j_start"]."</p>";
       echo "<p>".$row["j_finish"]."<p>";
@@ -187,7 +192,7 @@ if ($result) {
 
       $_SESSION['cj_id']=$row["j_id"];
       echo "<button class= 'btn btn-success' type='submit'>Cancel Purchase</button></td></tr><br/>";
-echo "</blockquote>";
+echo "</blockquote></div>";
 /*
 $sql = "SELECT * FROM book,journey where book.u_id='31'";
 $result = $conn->query($sql);
@@ -211,8 +216,10 @@ if ($result) {
 
 
   */  }
-} else {
-    echo "0 results";
+}
+else
+{
+    echo "<h3>Seems you haven't purchased any rides </h3><br><br><br>";
 }
 $conn->close();
 

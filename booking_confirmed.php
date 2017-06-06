@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet"  />
+    <LINK REL="icon" HREF="favicon.ico">
 
   </head>
   <body>
@@ -26,7 +27,12 @@
     <a class="navbar-brand" >#sharemyride</a>
     </div>
 
-<!--  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
+  </ul>
+</div>
+<!--
  <ul class="nav navbar-nav">
     <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
     <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
@@ -57,6 +63,7 @@
       <h1>Here are the contact details of person offers you ride</h1>
       <?php
       session_start();
+      include_once 'accesscheck.php';
       $servername = "localhost";
       $username = "root";
       $password = "";

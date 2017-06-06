@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/styles.css" rel="stylesheet"  />
+<link rel='icon' href='favicon.ico'>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -57,7 +58,15 @@
 
       </ul>
 
--->  <ul class="nav navbar-nav navbar-right">
+-->  
+  <?php 
+  if($_SESSION['uid']!="")
+    echo '<ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
+  </ul>';
+  ?>
+
+<ul class="nav navbar-nav navbar-right">
     <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -83,31 +92,30 @@
   if (!$conn)
       die("Connection failed: " . mysqli_connect_error());
       $sqli = 'select * from journey where sel=1 and j_start like "%'. $_POST["j_start"].'%" order by j_fare';//'.'"journey.u_id = user.u_id and journey.v_id = vehicle.v_id and j_finish ="'. $_POST["j_end"].'" and j_date="'. $_POST["j_date"].'"';
-      $abc = mysqli_query($conn,$sqli);
-      if(!$abc)
-      {
-        echo "<br/><blockquote><h4 class='text-success'>&lt/&gt &nbsp&nbspThere's nothing here... <h4></blockquote> ";
-      }
-      else
+      $abc = $conn->query($sqli);
+      if($abc)
       {
         echo '
           <tr>
+              <th>Sl. No</th>          
               <th>User</th>
               <th>Fare</th>
               <th>Description</th>
               <th>Seats left</th>
               <th></th>
-          </tr>
-';
-      while( $row = mysqli_fetch_array($abc) ) {
-            $_SESSION['j_id'] = $row['j_id'];
+          </tr>';
+            $_SESSION['lselect']="book";
+          $cnt = 1;
+      while( $row = $abc->fetch_assoc()) {
             $query1= 'select * from users where oauth_uid='.$row["uid"];
             $result1 = mysqli_query($conn,$query1);
-            $_SESSION['sj_id'] = $row["j_id"];
-            $_SESSION['lselect']="book";
-            $row1 = mysqli_fetch_array($result1);      
-            echo '<tr><td> '. $row1['first_name']. '</td><td> '. $row['j_fare']. '</td><td> '. $row['j_desc']. '</td><td> '. $row['seats']. '</td><td><a href = "book.php"><button class= "btn btn-success">Go</button></a></td></tr><br/>';
+            $row1 = $result1->fetch_assoc();      
+            echo "<tr><td> ". $cnt++."<td> ". $row1['first_name']. "</td><td> ". $row['j_fare']. "</td><td> ". $row['j_desc']. "</td><td> ". $row['seats']. "</td><td><a href = 'book.php?jid=".$row['j_id']."'><button class= 'btn btn-success'>Go</button></a></td></tr><br/>";
          }
+      }
+      else
+        {
+        echo "<br/><blockquote><h4 class='text-success'>&lt/&gt &nbsp&nbspThere's nothing here... <h4></blockquote> ";
       }
 ?>
 </table>

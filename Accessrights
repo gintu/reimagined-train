@@ -1,0 +1,11 @@
+Access only after login
+
+create_vehicle_main.php
+booking_confirmed.php
+book.php
+
+
+Access before login
+
+index.php
+select_ride.php

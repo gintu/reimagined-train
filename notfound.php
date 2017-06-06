@@ -1,4 +1,4 @@
-</html>
+<html>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,7 +6,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>Confirmation</title>
+      <title>Error 404</title>
 
       <!-- Bootstrap -->
       <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,24 +54,14 @@
 </ul>
 
 -->  
-<ul class="nav navbar-nav navbar-right">
-      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
-  </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Find Ride</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="profile.php">You</a></li>
-      </ul>
       </div>
     </div>
   </nav>
 
   <div class="jumbotron">
     <div id ="headp">
-    <center><h1> NEW RIDE ADDED.</h1></center>
-    <center><a href="profile.php"> go back to home page </a></center>
+    <center><h1> Oops.Wrong way !</h1></center>
+    <center><a href="index.php"> go back to home page </a></center>
     </div>
   </div>
   <div class="container ">
