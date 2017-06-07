@@ -1,16 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script>
+  var autocomplete1,autocomplete2;
+  function initMap() {
+      autocomplete1 = new google.maps.places.Autocomplete((document.getElementById('StartLoc')));
+      autocomplete2 = new google.maps.places.Autocomplete((document.getElementById('EndLoc')));
+      places = new google.maps.places.PlacesService(map);
+      autocomplete.addListener('place_changed', onPlaceChanged);
+    }
+
+    function onPlaceChanged() {
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        document.getElementById('StartLoc').placeholder = 'Enter a city';
+        document.getElementById('EndLoc').placeholder = 'Enter a city';
+      }
+    }
+
+    </script>
+    <script>
+function validateForm() {
+    var a = document.forms["regss"]["j_start"].value;
+	 var b = document.forms["regss"]["j_finish"].value;
+	  var c = document.forms["regss"]["j_date"].value;
+	if ((a==null || a=="") && (b==null || b=="") && (c==null || c==""))
+  {
+  alert("All Field must be filled out");
+  return false;
+  }
+    if (a == "" || a==null) {
+        alert("starting location must be filled out");
+        return false;
+    }
+
+    if (b == "" || b==null) {
+        alert("finishing point must be filled out");
+        return false;
+    }
+
+    if (c == "" || c==null) {
+        alert("date must be filled out");
+        return false;
+    }
+}
+</script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Join ride</title>
+    <title>Join a Ride</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet"  />
-
+    <link rel='icon' href='favicon.ico'>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -19,65 +65,13 @@
     <![endif]-->
   </head>
   <body>
-
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 50%;
-        width: 100%;
-      }
-
-      /* Optional: Makes the sample page fill the window. */
-      html,body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    /*  .controls {
-        margin-top: 10px;
-        border: 1px solid transparent;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        height: 32px;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-      }*/
-
-  /*   #origin-input,
-      #destination-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-      /*  padding: 0 11px 0 13px;
-        /*text-overflow: ellipsis;*/
-      /*  width: 200px;
-      }*/
-
-    /*  #origin-input:focus,
-      #destination-input:focus {
-        border-color: #4d90fe;
-      }*/
-
-      #mode-selector {
-        color: #fff;
-        background-color: #4d90fe;
-        margin-left: 12px;
-        padding: 5px 11px 0px 11px;
-      }
-
-      #mode-selector label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
-    </style>
-  </head>
-  <body>
+  <?php
+  session_start();
+  if($_SESSION['uid']=='')
+    $var = "index.php";
+  else
+    $var = "profile.php";
+  ?>
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -97,185 +91,73 @@
 
       </ul>
 
--->  <ul class="nav navbar-nav navbar-right">
+-->
+<?php
+if($_SESSION['uid']!=""){
+echo '<ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
+  </ul>';
+}
+?>
+ <ul class="nav navbar-nav navbar-right">
     <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.php" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
+        <li><a href=<?php echo $var;?> data-vivaldi-spatnav-clickable="1"><?php if($_SESSION['uid']=='') echo 'Login'; else echo 'You';?></a></li>
       </ul>
     </div>
   </div>
 </nav>
-<div class="jumbotron"  class="nomar">
+    <div class="jumbotron"  class="nomar">
 
 <div id="headp">
 
-  <h1>Join a Ride</h1>
-  <p>Where do you wanna go?</p>
+      <h1>Join a Ride</h1>
+      <p>Where do you wanna go?</p>
+
+  </div>
+  </div>
+<div class="container">
+
+
+  <form name="regss" class="form-horizontal" onsubmit="return validateForm()" method='post' action = 'select_ride.php'>
+    <fieldset>
+      <div class="form-group">
+        <div class="col-lg-10">
+          <input type="text" class="form-control" name="j_start" id="StartLoc" placeholder="Leaving from..">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-10">
+          <input type="text" class="form-control" name="j_finish" id="EndLoc" placeholder="Going to..">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-10">
+          <input type="date" class="form-control" name="j_date" id="JDate" placeholder="Date">
+        </div>
+      </div>
+        <button type="submit" onclick="validateForm()" class="btn btn-success" value="submit">Search</button>
+    </fieldset>
+  </form><br />
+  <br/><br />
+  <!--<a href="main.php" class="btn btn-link" data-vivaldi-spatnav-clickable="1">Offer a Ride</a>-->
+
+  <!--<footer>
+    <p class="text-success">Made with love in RIT</p>
+  </footer>-->
+
+  </div>
+  <div style="height:50%;">
 
 </div>
-</div>
-<!--    <input id="origin-input" class="controls" type="text"
-        placeholder="Enter an origin location">
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-    <input id="destination-input" class="controls" type="text"
-        placeholder="Enter a destination location">-->
-
-    <!--<div style =" visibility:hidden;" id="mode-selector" class="controls">
-      <input type="radio" name="type" id="changemode-walking" checked="checked">
-      <label for="changemode-walking">Walking</label>
-
-      <input type="radio" name="type" id="changemode-transit">
-      <label for="changemode-transit">Transit</label>
-
-      <input type="radio" name="type" id="changemode-driving">
-      <label for="changemode-driving">Driving</label>
-    </div>-->
-
-
-<div id="map" style="width:320px;min-width:25%;float:left;margin-left:5%;border-radius: 8px;"></div>
-
-
-
-
-
-    <div class="container" style="float:left;margin-top:20px;">
-
-
-      <form name="regss" class="form-horizontal" onsubmit="return validateForm()" method='post' action = 'select_ride.php'>
-        <fieldset>
-
-
-          <div class="form-group">
-            <div class="col-lg-10">
-              <input type="text" id="origin-input" class="form-control" name="j_start"  placeholder="Leaving from..">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-lg-10">
-              <input type="text" name="j_finish" id="destination-input" class="form-control" placeholder="Going to..">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-lg-10">
-              <input type="date" class="form-control" name="j_date" id="JDate" placeholder="Date">
-            </div>
-          </div>
-
-            <button type="submit" onclick="validateForm()" class="btn btn-success" value="submit">Search</button>
-        </fieldset>
-      </form><br />
-      <br/><br />
-      <!--<a href="main.php" class="btn btn-link" data-vivaldi-spatnav-clickable="1">Offer a Ride</a>-->
-
-      <!--<footer>
-        <p class="text-success">Made with love in RIT</p>
-      </footer>-->
-
-    </div>
-
-
-    <script>
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          mapTypeControl: false,
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13
-        });
-
-        new AutocompleteDirectionsHandler(map);
-      }
-
-       /**
-        * @constructor
-       */
-      function AutocompleteDirectionsHandler(map) {
-        this.map = map;
-        this.originPlaceId = null;
-        this.destinationPlaceId = null;
-        this.travelMode = 'WALKING';
-        var originInput = document.getElementById('origin-input');
-        var destinationInput = document.getElementById('destination-input');
-    //    var modeSelector = document.getElementById('mode-selector');
-        this.directionsService = new google.maps.DirectionsService;
-        this.directionsDisplay = new google.maps.DirectionsRenderer;
-        this.directionsDisplay.setMap(map);
-
-        var originAutocomplete = new google.maps.places.Autocomplete(
-            originInput, {placeIdOnly: true});
-        var destinationAutocomplete = new google.maps.places.Autocomplete(
-            destinationInput, {placeIdOnly: true});
-
-    /*    this.setupClickListener('changemode-walking', 'WALKING');
-        this.setupClickListener('changemode-transit', 'TRANSIT');
-        this.setupClickListener('changemode-driving', 'DRIVING');*/
-
-        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-
-      //  this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(originInput);
-      //  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-        //this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-      }
-
-      // Sets a listener on a radio button to change the filter type on Places
-      // Autocomplete.
-      AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
-        //var radioButton = document.getElementById(id);
-        var me = this;
-      /*  radioButton.addEventListener('click', function() {
-          me.travelMode = mode;
-          me.route();
-        });*/
-      };
-
-      AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
-        var me = this;
-        autocomplete.bindTo('bounds', this.map);
-        autocomplete.addListener('place_changed', function() {
-          var place = autocomplete.getPlace();
-          if (!place.place_id) {
-            window.alert("Please select an option from the dropdown list.");
-            return;
-          }
-          if (mode === 'ORIG') {
-            me.originPlaceId = place.place_id;
-          } else {
-            me.destinationPlaceId = place.place_id;
-          }
-          me.route();
-        });
-
-      };
-
-      AutocompleteDirectionsHandler.prototype.route = function() {
-        if (!this.originPlaceId || !this.destinationPlaceId) {
-          return;
-        }
-        var me = this;
-
-        this.directionsService.route({
-          origin: {'placeId': this.originPlaceId},
-          destination: {'placeId': this.destinationPlaceId},
-          travelMode: this.travelMode
-        }, function(response, status) {
-          if (status === 'OK') {
-            me.directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }
-        });
-      };
-
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3nIT6Wk5vDG1Vy_knJ_E-LGcFzJIPfO4&libraries=places&callback=initMap"
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key= AIzaSyCSxUkLnOe4B5WwYeJPugVNTYssGcdzWmY &libraries=places&callback=initMap"
         async defer></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-      </body>
-      </html>
+
+  </body>
+</html>
