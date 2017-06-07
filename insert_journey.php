@@ -20,7 +20,7 @@ $fare=$_POST['fare'];
 $rdesc=$_POST['rdesc'];
 
 
-$sql = "INSERT INTO journey (j_start, j_finish, j_date,j_time,j_fare,j_desc,uid,seats) VALUES ('$start', '$finish', '$date','$time','$fare','$rdesc',".$_SESSION['uid'].",".$_POST['seats'].")";
+$sql = "INSERT INTO journey (j_start, j_finish, j_date,j_time,j_fare,j_desc,uid,seats,sel) VALUES ('$start', '$finish', '$date','$time','$fare','$rdesc',".$_SESSION['uid'].",".$_POST['seats'].",0)";
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";

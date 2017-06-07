@@ -236,7 +236,12 @@ if($_SESSION['uid']==null)
 
        <div class="form-group">
          <div class="col-lg-10">
-           <input type="text" name="fare" class="form-control" id="fare" placeholder="fare">
+           <input type="text" name="fare" class="form-control" id="fare" placeholder="fare" style="width:45%;float: left;">
+         </div>
+        </div>
+       <div class="form-group">
+         <div class="col-lg-10">
+           <input type="text" name="seats" class="form-control" id="seats" placeholder="seats" style="width:45%;float: left;">
          </div>
         </div>
     <div class="form-group">

@@ -74,6 +74,7 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+
 $sql = 'SELECT v_id from vehicle ORDER BY v_id DESC LIMIT 1';
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
@@ -82,7 +83,7 @@ $sql = 'SELECT j_id from journey ORDER BY j_id DESC LIMIT 1';
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $j_id = $row['j_id'];
-$sql = "update journey set v_id =".$v_id." where j_id = ".$j_id;
+$sql = "update journey set v_id =".$v_id.",sel=1 where j_id = ".$j_id;
 $result = $conn->query($sql);
 if($result)
 {

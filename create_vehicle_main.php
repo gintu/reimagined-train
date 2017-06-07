@@ -60,7 +60,7 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>Vehicle Deatils</title>
+      <title>Vehicle Details</title>
 
       <!-- Bootstrap -->
       <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -162,7 +162,9 @@
       <p>Share empty seats of your ride!</p>
     </div>
   </div>
-  <form method="post" action ="select_vehicle.php">
+<br>
+<br>
+<div class="container">
       <?php
           $query = 'select * from vehicle where uid ='.$_SESSION['uid'];
           $result = $conn->query($query);
@@ -172,19 +174,21 @@
             while($row = $result->fetch_assoc()) {
                 /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
                 $count++;
-                echo "<blockquote>";
+                echo "<form method='post' action ='select_vehicle.php?v_id=".$row['v_id']."'><div style='margin-right:10%;float:left;'><blockquote>";
                 echo "<h3> Ride #".$count."</h3>";
+                echo "<img src = 'images/".$row['v_image_name']."' width=30% style='margin:5%;'>";
                 echo "<p>".$row["v_model"]."</p>";
                 echo "<p>".$row["v_rno"]."</p>";
                 echo "<p>".$row["v_desc"]."</p>";
-                $_SESSION['v_id'] = $row['v_id'];
                 echo "<button class= 'btn btn-success' type='submit'>Select</button>";
-                echo "</blockquote>";
+                echo "</blockquote></div></form>";
             }
           }
           ?>
-</form>
-  <div class="container ">
+</div>
+  <div class="container " style="clear:left;">
+<br>
+<br>
 
     <form name="reg" class="form-horizontal"  form method="post" action="insert_vehicle.php" enctype="multipart/form-data">
       <fieldset>
