@@ -138,6 +138,19 @@ if (b==null || b=="")
 
     </script>-->
   </head>
+  <?php
+session_start();
+$_SESSION['lselect']="main";
+$servername = "localhost";
+$username = "root";
+$password = "";
+// Create connection
+$conn = mysqli_connect($servername, $username, $password,"carpooldb");
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+?>
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
   <div class="navbar-header">
@@ -160,8 +173,8 @@ if (b==null || b=="")
   -->  <ul class="nav navbar-nav navbar-right">
   <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a Ride</a></li>
   </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="index.php" data-vivaldi-spatnav-clickable="1">You</a></li>
+  <ul class="nav navbar-nav navbar-right">
+      <li><a href=<?php if($_SESSION['uid']=="") echo 'index.php'; else echo 'profile.php';?> data-vivaldi-spatnav-clickable="1"><?php if($_SESSION['uid']=="") echo 'Login'; else echo 'You';?></a></li>
     </ul>
   </div>
   </div>
@@ -178,10 +191,16 @@ if (b==null || b=="")
   </div>
   </div>
 
-  <div id="map" style="width:320px;min-width:25%;float:left;margin-left:5%;margin-top:5vh;border-radius: 6px;"></div>
+<?php
+if($_SESSION['uid']==null)
+{
+  echo "Please <a href='index.php'>Login</a> first<!--";
+}
+?>
+  <div id="map" style="width:30%;min-width:250px;float:left;margin-top:6%;margin-left:5%;border-radius: 2%;"></div>
 
 
-<div class="container" style="float:left;margin-top:20px;margin-left:5px">
+<div class="container" style="float:left;width:62%;margin-left:2%;">
 
 
     <h1>Enter the Journey Details</h1>
@@ -253,6 +272,10 @@ if (b==null || b=="")
   </fieldset>
 </form>
 </div>
+    <?php 
+    if($_SESSION['uid']=='')
+      echo '<!--';
+    ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
