@@ -3,6 +3,10 @@
 include_once 'gpConfig.php';
 include_once 'User.php';
 
+if(!empty($_SESSION['uid']))
+{
+  header("Location:profile.php");
+}
 if(isset($_GET['code'])){
 	$gClient->authenticate($_GET['code']);
 	$_SESSION['token'] = $gClient->getAccessToken();

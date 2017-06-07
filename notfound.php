@@ -34,7 +34,7 @@
     </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse" >
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -46,7 +46,7 @@
         <a class="navbar-brand" >#sharemyride</a>
       </div>
 
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <div class="collapse navbar-collapse"  id="bs-example-navbar-collapse-2">
 <!--  <ul class="nav navbar-nav">
 <li class="active"><a href="#" data-vivaldi-spatnav-clickable="1">Link <span class="sr-only">(current)</span></a></li>
 <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
@@ -58,10 +58,9 @@
     </div>
   </nav><br><br>
     <center><h1> Oops. #404</h1></center>
-    <center><div style="opacity: .3;">You can either go back to <a href="profile.php"> home page </a> or watch this sheep screaming like human<br><br>
+    <center><div style="opacity: .3;">You can either go back to <a href="index.php"> home page </a> or watch this sheep screaming like human<br><br>
     </div>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SIaFtAKnqBU?rel=0&amp;controls=0&amp;showinfo=0&amp;start=2" frameborder="0" allowfullscreen></iframe>
-
     </center>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
