@@ -32,7 +32,7 @@ else {
 		  header("Location:home_join_ride.php");
 	else
 	{
-		header("Location:profile.php");
+		header("Location:home_join_ride.php");
 	}
 
 

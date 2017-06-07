@@ -78,6 +78,13 @@
     </style>
   </head>
   <body>
+<?php
+  session_start();
+  if($_SESSION['uid']=='')
+    $var = "index.php";
+  else
+    $var = "profile.php";
+  ?>
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -97,24 +104,32 @@
 
       </ul>
 
--->  <ul class="nav navbar-nav navbar-right">
+-->
+<?php
+if($_SESSION['uid']!=""){
+echo '<ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
+  </ul>';
+}
+?>
+ <ul class="nav navbar-nav navbar-right">
     <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.php" data-vivaldi-spatnav-clickable="1">Sign In</a></li>
+        <li><a href=<?php echo $var;?> data-vivaldi-spatnav-clickable="1"><?php if($_SESSION['uid']=='') echo 'Login'; else echo 'You';?></a></li>
       </ul>
     </div>
   </div>
 </nav>
-<div class="jumbotron"  class="nomar">
+    
+    <div class="jumbotron"  class="nomar">
+        <div id="headp">
 
-<div id="headp">
+      <h1>Join a Ride</h1>
+      <p>Where do you wanna go?</p>
 
-  <h1>Join a Ride</h1>
-  <p>Where do you wanna go?</p>
-
-</div>
-</div>
+  </div>
+  </div>
 <!--    <input id="origin-input" class="controls" type="text"
         placeholder="Enter an origin location">
 
@@ -133,14 +148,9 @@
     </div>-->
 
 
-<div id="map" style="width:320px;min-width:25%;float:left;margin-left:5%;border-radius: 8px;"></div>
+  <div id="map" style="width:30%;min-width:250px;float:left;margin-left:5%;border-radius: 2%;"></div>
 
-
-
-
-
-    <div class="container" style="float:left;margin-top:20px;">
-
+    <div style="float:left;width:62%;margin-top:2%;margin-left:2%;">
 
       <form name="regss" class="form-horizontal" onsubmit="return validateForm()" method='post' action = 'select_ride.php'>
         <fieldset>
