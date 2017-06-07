@@ -49,24 +49,7 @@ $_SESSION["uid"] = $gpUserProfile['id'];
 	$_SESSION['userData'] = $userData;
 
 	//Render facebook profile data
-    if(!empty($userData)){
-      $output = '<h1>Details obtained from google</h1><h4>because we care about your privacy</h4><br><blockquote>';
-        //$output .= '<img src="'.$userData['picture'].'" width="300" height="220">';
-        $output .= '<div class="container">Google ID : ' . $userData['oauth_uid'];
-        $output .= '<br/>Name : ' . $userData['first_name'].' '.$userData['last_name'];
-        $output .= '<br/>Email : ' . $userData['email'];
-        //$output .= '<br/>Gender : ' . $userData['gender'];
-        $output .= '<br/>Locale : ' . $userData['locale'];
-        $output .= '<br/>Logged in with : Google<br></blockquote></div>';
-
-
-
-
-      //  $output .= '<br/><a href="'.$userData['link'].'" target="_blank">Click to Visit Google+ Page</a>';
-      //  $output .= '<br/>Logout from <a href="logout.php">Google</a>';
-    }else{
-        $output = '<h3 style="color:red">Some problem occurred, please try again.</h3>';
-    }
+  
 } else {
 	$authUrl = $gClient->createAuthUrl();
 	$output = '<center><a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'" class="btn btn-common wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="400ms" >Connect with Google</a></center>';

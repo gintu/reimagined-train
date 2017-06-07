@@ -90,6 +90,35 @@
   #output_image
   {
    max-width:300px;
+  }       
+  .div_1
+  {
+
+      height: 350px;
+      width: 350px;
+      margin: auto;
+      border: 1px black solid;
+      overflow-y: hidden;
+      overflow-x: scroll;
+  }
+
+  .div_3
+  {
+      float: left;
+      height: 350px;
+      width: 500px;
+      margin: auto;
+      border: 1px black solid;
+      overflow-y: hidden;
+      overflow-x: scroll;
+  }
+
+  .div_2
+  {
+      height: 100px;
+      width: 100px;
+      border: 1px solid #A2A2A2;
+      float: left;
   }
   </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -156,6 +185,7 @@
     </div>
   </nav>
 
+
   <div class="jumbotron">
     <div id ="headp">
       <h1>Select vehicle</h1>
@@ -164,6 +194,20 @@
   </div>
 <br>
 <br>
+<div id="scroll">
+<ul>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
+</ul>
+</div>
+
 <div class="container">
       <?php
           $query = 'select * from vehicle where uid ='.$_SESSION['uid'];
@@ -172,15 +216,14 @@
           if ($result) {
           // output data of each row
             while($row = $result->fetch_assoc()) {
-                /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
-                $count++;
-                echo "<form method='post' action ='select_vehicle.php?v_id=".$row['v_id']."'><div style='margin-right:10%;float:left;'><blockquote>";
+              $count++;
+                echo "<form method='post' action ='select_vehicle.php?v_id=".$row['v_id']."'><div style='margin-right:10%;float:left;width:20%;'><blockquote>";
                 echo "<h3> Ride #".$count."</h3>";
-                echo "<img src = 'images/".$row['v_image_name']."' width=30% style='margin:5%;'>";
-                echo "<p>".$row["v_model"]."</p>";
+                echo "<img src = 'images/".$row['v_image_name']."' width=60% style='margin:5%;'>";
+                echo "<p><b>".$row["v_model"]."</b></p>";
                 echo "<p>".$row["v_rno"]."</p>";
-                echo "<p>".$row["v_desc"]."</p>";
-                echo "<button class= 'btn btn-success' type='submit'>Select</button>";
+                echo "<p><i><div style='opacity:.5;'>".$row["v_desc"]."</div></i></p>";
+                echo "<button class= 'btn btn-success' type='submit' >Select</button>";
                 echo "</blockquote></div></form>";
             }
           }
