@@ -58,7 +58,7 @@
     </div>
   </nav><br><br>
     <center><h1> Oops. #404</h1></center>
-    <center><div style="opacity: .3;">You can either go back to <a href="index.php"> home page </a> or watch this sheep screaming like human<br><br>
+    <center><div style="opacity: .3;">You can either go back to <a href="profile.php"> home page </a> or watch this sheep screaming like human<br><br>
     </div>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/SIaFtAKnqBU?rel=0&amp;controls=0&amp;showinfo=0&amp;start=2" frameborder="0" allowfullscreen></iframe>
 

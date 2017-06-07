@@ -44,9 +44,6 @@
       <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
   </ul>
 <ul class="nav navbar-nav navbar-right">
-   <li><a href="create_profile.php" data-vivaldi-spatnav-clickable="1">Update Your Profile</a></li>
- </ul>
-<ul class="nav navbar-nav navbar-right">
     <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -107,10 +104,10 @@ if ($result) {
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       echo "<blockquote>";
-      echo '<img src="uploads/pikup_choice.png" width="100px" >';
+      echo '<img src="'.$_SESSION['picture'].'" width="100px" >';
       echo '<h1>'.$row["first_name"].' '.$row["last_name"].'</h1>';
       echo "<p>".$row["email"]."</p>";
-      echo "<p><a href= '".$row["link"]."' class='btn btn-success'>Google+ profile</a><p>";
+      echo '<a href="create_profile.php" class = "btn btn-success">Update Your Profile</a>';
       echo "</blockquote>";
 
 //  header('Content-type: image/jpg');

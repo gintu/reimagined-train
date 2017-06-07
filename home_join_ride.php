@@ -79,11 +79,12 @@
   </head>
   <body>
 <?php
+  $var = "index.php";
   session_start();
-  if($_SESSION['uid']=='')
-    $var = "index.php";
-  else
-    $var = "profile.php";
+      if(!empty($_SESSION) and $_SESSION['uid']=='')
+        $var = "profile.php";
+      else
+        $var = "index.php";
   ?>
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -106,7 +107,7 @@
 
 -->
 <?php
-if($_SESSION['uid']!=""){
+if(!empty($_SESSION) and $_SESSION['uid']!=""){
 echo '<ul class="nav navbar-nav navbar-right">
       <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
   </ul>';
@@ -116,7 +117,7 @@ echo '<ul class="nav navbar-nav navbar-right">
     <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
   </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href=<?php echo $var;?> data-vivaldi-spatnav-clickable="1"><?php if($_SESSION['uid']=='') echo 'Login'; else echo 'You';?></a></li>
+        <li><a href=<?php echo $var;?> data-vivaldi-spatnav-clickable="1"><?php if(empty($_SESSION)) echo "Login"; else echo "You"?></a></li>
       </ul>
     </div>
   </div>

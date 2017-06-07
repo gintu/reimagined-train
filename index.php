@@ -34,13 +34,13 @@ $_SESSION["uid"] = $gpUserProfile['id'];
         'first_name'    => $gpUserProfile['given_name'],
         'last_name'     => $gpUserProfile['family_name'],
         'email'         => $gpUserProfile['email'],
-    //    'gender'        => $gpUserProfile['gender'],
+        'gender'        => $gpUserProfile['gender'],
         'locale'        => $gpUserProfile['locale'],
         'picture'       => $gpUserProfile['picture']
         //'link'          => $gpUserProfile['link']
     );
     $userData = $user->checkUser($gpUserData);
-
+  $_SESSION['picture'] = $gpUserProfile['picture'];
 	//Storing user data into session
 	$_SESSION['userData'] = $userData;
 
