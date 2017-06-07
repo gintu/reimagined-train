@@ -55,7 +55,7 @@
 
 -->  
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="index.php">Login</a></li>
+        <li><a href="home_join_ride.php">Home</a></li>
       </ul>
       </div>
     </div>

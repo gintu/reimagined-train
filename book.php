@@ -89,6 +89,10 @@ if(!empty($_GET))
 {
   $_SESSION['sj_id'] = $_GET['jid']; 
 }
+else
+{
+  header("Location:invalidpage.php");
+}
 $sql = 'SELECT * FROM journey where j_id='.$_SESSION["sj_id"];
 $result = $conn->query($sql);
 if ($result) {

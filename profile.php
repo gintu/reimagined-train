@@ -140,7 +140,7 @@ $count=0;
     while($row = $result->fetch_assoc()) {
 
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
-      echo "<form method='post' action='dropride.php?dj_id=".$row["j_id"]."'>";
+      echo "<form method='post' action='dropride.php?dj_id=".$row['j_id']."'>";
       $count++;
       echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
       echo "<h3> Ride #".$count."</h3>";
@@ -150,7 +150,7 @@ $count=0;
       echo "<p>".$row["j_time"]."<p>";
       echo "<p style='color:yellow;'> Seats Left :".$row["seats"]."<p>";
       echo "<button class= 'btn btn-success' type='submit'>Drop ride</button></td></tr>";
-echo "</blockquote></div>";
+echo "</blockquote></div></form>";
 //  header('Content-type: image/jpg');
       // echo $content;
 //      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
@@ -159,7 +159,7 @@ echo "</blockquote></div>";
  
 } 
 ?>
-</form>
+
 </div>
 
       <div class="container">
@@ -182,7 +182,7 @@ $count=0;
       echo "<p>".$row["j_time"]."<p>";
       echo "<p style='color:cyan;'>Reserved ".$row["seats"]." seat<p>";      
       echo "<button class= 'btn btn-success' type='submit'>Cancel Purchase</button></td></tr><br/>";
-echo "</blockquote></div>";
+echo "</blockquote></div></form>";
 /*
 $sql = "SELECT * FROM book,journey where book.u_id='31'";
 $result = $conn->query($sql);
@@ -210,7 +210,6 @@ if ($result) {
 $conn->close();
 
 ?>
-</form>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -101,7 +101,7 @@
 
       $conn->close();
       ?>
-      <a href="home_join_ride.php" class="btn btn-success" data-vivaldi-spatnav-clickable="1">Continue</a>
+      <a href="profile.php" class="btn btn-success" data-vivaldi-spatnav-clickable="1">Continue</a>
 
     </div>
 

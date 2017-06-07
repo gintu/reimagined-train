@@ -56,17 +56,13 @@
 -->  
       </div>
     </div>
-  </nav>
-
-  <div class="jumbotron">
-    <div id ="headp">
-    <center><h1> Oops.Wrong way !</h1></center>
-    <center><a href="index.php"> go back to home page </a></center>
+  </nav><br><br>
+    <center><h1> Oops. #404</h1></center>
+    <center><div style="opacity: .3;">You can either go back to <a href="index.php"> home page </a> or watch this sheep screaming like human<br><br>
     </div>
-  </div>
-  <div class="container ">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SIaFtAKnqBU?rel=0&amp;controls=0&amp;showinfo=0&amp;start=2" frameborder="0" allowfullscreen></iframe>
 
-</div>
+    </center>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
