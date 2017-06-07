@@ -80,7 +80,7 @@
       //$jid=$_POST['j_id'];
 
 
-      $sql = "SELECT * FROM users where oauth_uid=".$_SESSION['uid'];
+      $sql = "SELECT * FROM users where oauth_uid=".$_GET['uid'];
       $result = $conn->query($sql);
       if ($result) {
           // output data of each row
