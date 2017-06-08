@@ -105,7 +105,7 @@
     width:100%;
     height:100%;
   }
- 
+
 
 /* Shrink */
 .hvr-shrink {
@@ -175,6 +175,9 @@
 
 -->
 <ul class="nav navbar-nav navbar-right">
+      <li><a href="newvehicle.php" data-vivaldi-spatnav-clickable="1">Add a new vehicle</a></li>
+  </ul>
+<ul class="nav navbar-nav navbar-right">
       <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
   </ul>
 
@@ -217,101 +220,7 @@
           ?>
 </div>
 </center>
-  <div class="container " style="clear:left;">
-<br>
-<br>
 
-    <form name="reg" class="form-horizontal"  form method="post" action="insert_vehicle.php" enctype="multipart/form-data">
-      <fieldset>
-
-    <h1>Or add a new one</h1>
-    <br/>
-        <div class="form-group">
-          <div class="col-lg-10" id="autocomplete" >
-            <input type="text" name="mname" class="form-control" id="mname" placeholder="Model Name" >
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-lg-10">
-            <input type="text" name="rno"  pattern="[A-Z]{2}\s[0-9|\s]{1,2}\s[A-Z|\s]{1,2}\s[0-9]{1,4}" class="form-control" id="rno" placeholder="Registraion Number eg(KL xx x xxxx)" >
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-lg-10">
-            <input type="number" name="nos" class="form-control" id="nos" placeholder="Number of seats" >
-          </div>
-        </div>
-<!--   <div class="form-group">
-<label for="date" class="col-lg-2 control-label">Date</label>
-<div class="col-lg-10">
-<input type="text" class="form-control" id="date" placeholder="date">
-</div>
-</div>
-<div class="form-group">
-<label for="time" class="col-lg-2 control-label">Time</label>
-<div class="col-lg-10">
-<input type="text" class="form-control" id="time" placeholder="time">
-</div>
-</div>
-
-<div class="form-group">
-<label for="fare" class="col-lg-2 control-label">Fare</label>
-<div class="col-lg-10">
-<input type="text" class="form-control" id="fare" placeholder="fare">
-</div>
-</div> -->
-        <div class="form-group">
-          <div class="col-lg-10">
-            <textarea name="vdesc" class="form-control" rows="3" id="rdesc" placeholder="Short Description about the vehicle.."  ></textarea>
-          </div>
-        </div>
-
-
-<!--    <div class="form-group">
-<label class="col-lg-2 control-label">Radios</label>
-<div class="col-lg-10">
-<div class="radio">
-<label>
-<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-Option one is this
-</label>
-</div>
-<div class="radio">
-<label>
-<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-Option two can be something else
-</label>
-</div>
-</div>
-</div>
--->
-      <div class="form-group">
-        <div class="col-lg-10">
-<!--<input type="file" name="myimage" class="form-control" id="nos" >-->
-          <input type="file" accept="image/*" onchange="preview_image(event)" name="myimage" class="form-control" id="myimage" >
-            <div id="wrapper">
-              <br>
-              <img id="output_image"/>
-            </div>
-          </input>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-lg-10 col-lg-offset-2">
-          <button type="reset" class="btn btn-default" >Cancel</button>
-          <button type="submit" onclick="validateForm()" class="btn btn-success" value="Upload Image" >Save</button>
-          <script>
-              function myFunction() {
-                  alert("I am an alert box!");
-              }
-          </script>
-        </div>
-      </div>
-    </fieldset>
-  </form>
-</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
