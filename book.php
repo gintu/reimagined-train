@@ -41,7 +41,7 @@
       <li><a href="#" data-vivaldi-spatnav-clickable="1">Link</a></li>
 
     </ul>
-    --> 
+    -->
 <ul class="nav navbar-nav navbar-right">
       <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
   </ul>
@@ -87,7 +87,7 @@ if($_SESSION['uid']=="")
 
 if(!empty($_GET))
 {
-  $_SESSION['sj_id'] = $_GET['jid']; 
+  $_SESSION['sj_id'] = $_GET['jid'];
 }
 else
 {
@@ -102,44 +102,44 @@ if ($result) {
        echo "<table>
        <tr>
           <td style='color:teal;'>
-              Starting Point&nbsp&nbsp&nbsp   
+              Starting Point&nbsp&nbsp&nbsp
           </td>
           <td>".
               $row['j_start']."
           </td>
         <tr>
           <td style='color:teal;'>
-              Destination 
+              Destination
           </td>
-          <td>" . 
+          <td>" .
               $row['j_finish']."
           </td>
         <tr>
           <td style='color:teal;'>
-              Date 
+              Date
           </td>
-          <td>" . 
+          <td>" .
               $row['j_date']."
           </td>
         <tr>
           <td style='color:teal;'>
-              Time 
+              Time
           </td>
-          <td>" . 
+          <td>" .
               $row['j_time']."
           </td>
         <tr>
-          <td style='color:teal;'>". 
-             "Journey<br> Description 
+          <td style='color:teal;'>".
+             "Journey<br> Description
           </td>
-          <td>" . 
+          <td>" .
               $row["j_desc"]. "
           </td>
         <tr>
           <td style='color:teal;'>
-              Seats left 
+              Seats left
           </td>
-          <td>". 
+          <td>".
               $row["seats"]. "
           </td>
         <tr>
@@ -164,6 +164,8 @@ if ($result) {
 
       echo "<div style='float:left;margin:0 0 40px 40px;'><blockquote><h1>"."Offered by"."</h1>"."<br> ";
 //echo '<img src="uploads/karthik.jpg" width="300px" >';
+  //  echo "<img src=>"
+  echo '<img src="'.$row['picture'].'" width="200px" style="border-radius:7px" >';
 
       echo "<br>Name:".$row["first_name"]." ".$row["last_name"]."<br>";
       echo "<p>".$row["email"]."</p>";
@@ -181,8 +183,8 @@ if ($result) {
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1> "."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
 
-      echo "<div style='float:left;margin:0 0 40px 40px;'><h1>"."Vehicle Description"."</h1><blockquote> ";
-    //  echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" >';
+      echo "<div style='float:left;margin:0 0 40px 40px;'><blockquote><h1>"."Vehicle Description"."</h1> ";
+      echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" style="border-radius:7px" >';
     //echo '<img src="uploads/wallhaven-173882.jpg" width="300px" >';
  echo "<br>Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description:".$row["v_desc"]."<br>";
 // echo $row["v_image_name"];
