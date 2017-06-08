@@ -91,35 +91,7 @@
   {
    max-width:300px;
   }       
-  .div_1
-  {
 
-      height: 350px;
-      width: 350px;
-      margin: auto;
-      border: 1px black solid;
-      overflow-y: hidden;
-      overflow-x: scroll;
-  }
-
-  .div_3
-  {
-      float: left;
-      height: 350px;
-      width: 500px;
-      margin: auto;
-      border: 1px black solid;
-      overflow-y: hidden;
-      overflow-x: scroll;
-  }
-
-  .div_2
-  {
-      height: 100px;
-      width: 100px;
-      border: 1px solid #A2A2A2;
-      float: left;
-  }
   </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -194,20 +166,6 @@
   </div>
 <br>
 <br>
-<div id="scroll">
-<ul>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-<li><a href="#"><img src="../images/adriana2.jpg" alt=""><span>Image Name</span></a></li>
-</ul>
-</div>
-
 <div class="container">
       <?php
           $query = 'select * from vehicle where uid ='.$_SESSION['uid'];
@@ -219,7 +177,7 @@
               $count++;
                 echo "<form method='post' action ='select_vehicle.php?v_id=".$row['v_id']."'><div style='margin-right:10%;float:left;width:20%;'><blockquote>";
                 echo "<h3> Ride #".$count."</h3>";
-                echo "<img src = 'images/".$row['v_image_name']."' width=60% style='margin:5%;'>";
+                echo "<img src = 'images/".$row['v_image_name']."' width=20% style='margin:5%;'>";
                 echo "<p><b>".$row["v_model"]."</b></p>";
                 echo "<p>".$row["v_rno"]."</p>";
                 echo "<p><i><div style='opacity:.5;'>".$row["v_desc"]."</div></i></p>";
