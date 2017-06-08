@@ -127,16 +127,16 @@ if ($result) {
 $sql = "SELECT * FROM journey where uid=".$_SESSION['uid'];
 $result = $conn->query($sql);
 $count=0;
-        echo "
-                <br><br>
-                <div>
-                  <h1>Your Ride Offers</h1>
-                  <p>Here's are all your offers</p>
-                </div>";
         // output data of each row
     while($row = $result->fetch_assoc()) {
-
-      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
+if($count==0)
+{        echo "
+                      <br><br>
+                      <div>
+                        <h1>Your Ride Offers</h1>
+                        <p>Here's are all your offers</p>
+                      </div>";
+      }      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       echo "<form method='post' action='ride_details.php?dj_id=".$row['j_id']."&count=".($count+1)."'>";
       $count++;
       echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
@@ -164,11 +164,13 @@ echo "</blockquote></div></form>";
 $sql = "SELECT booked.seats as seats,j_start,j_finish,j_date,j_time,jid from booked,journey where booked.uid=".$_SESSION['uid']." and booked.jid = journey.j_id";
 $result = $conn->query($sql);
 $count=0;
-    echo "<h1>Your purchased rides </h1>
-        <p>Here's are all your rides</p>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
-      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
+ if($count==0)
+{    echo "<h1>Your purchased rides </h1>
+              <p>Here's are all your rides</p>";
+      }
+            /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       $count++;
       echo "<form method = 'post' action='cancel_ride.php?cj_id=".$row['jid']."'>";
       echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";

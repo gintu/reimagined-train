@@ -181,7 +181,7 @@ if ($result) {
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1> "."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
 
-      echo "<div style='float:left;margin:0 0 40px 40px;'><blockquote><h1>"."Vehicle Description"."</h1> ";
+      echo "<div style='float:left;margin:0 0 40px 40px;'><h1>"."Vehicle Description"."</h1><blockquote> ";
     //  echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" >';
     //echo '<img src="uploads/wallhaven-173882.jpg" width="300px" >';
  echo "<br>Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description:".$row["v_desc"]."<br>";

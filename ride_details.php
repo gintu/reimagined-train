@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Profile</title>
+    <title>Ride details</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -102,6 +102,7 @@ $count=0;
       echo "<p>".$row["j_time"]."<p>";
       echo "<p style='color:yellow;'> Seats Left :".$row["seats"]."<p>";
       echo "<form method='post' action='dropride.php?dj_id=".$dj_id."'><button type='submit' class='btn btn-warning'>Drop this ride</a></blockquote></div></form><br>";
+    $v_id = $row['v_id'];
 //  header('Content-type: image/jpg');
       // echo $content;
 //      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
@@ -110,28 +111,43 @@ $count=0;
  
 
 }
-      echo "<div style='clear:float;'><br><h2>Booked users<h2>";
+$sql = "SELECT * FROM vehicle where v_id =".$v_id;
+$result = $conn->query($sql);
+if ($result) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      /*  echo "<h1> "."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
+
+      echo "<div style='float:left;margin-left:10%;'><h1>"."Vehicle Description"."</h1><blockquote> ";
+    //  echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" >';
+    //echo '<img src="uploads/wallhaven-173882.jpg" width="300px" >';
+ echo "<br>Model Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_model"]."<br>"."Registration Number&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp".$row["v_rno"]."<br>"."Number of seats left&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_seat"]."<br>"."Vehicle Description&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_desc"]."<br></div>";
+// echo $row["v_image_name"];
+ //echo "<img src='uploads/".$row["v_image_name"]."'/>";
+echo "<img src='uploads/".$row['v_image_name']."' style='width:15%;margin-top:5%;margin-left:3%;'>";
+
+    }
+}
+
+echo '<div style="clear:left;"><table class="table table-striped table-hover ">';
       $sqli = 'select first_name,bio,booked.seats as seats from booked,journey,users where journey.j_id = '.$dj_id.' and booked.jid=journey.j_id and users.oauth_uid = booked.uid';
       $abc = $conn->query($sqli);
-      if($abc)
+          $cnt = 1;
+      while( $row = $abc->fetch_assoc()) {
+      if($cnt==1)
       {
         echo '
-          <tr>
+          <tr><br><h2>Booked users<h2>
               <th>Sl. No</th>          
               <th>Name</th>
               <th>Bio</th>
               <th>Seats booked</th>
               <th></th>
           </tr>';
-          $cnt = 1;
-      while( $row = $abc->fetch_assoc()) {
+      }
+
             echo "<tr><td> ". $cnt++."<td> ". $row['first_name']. "</td><td> ". $row['bio']. "</td><td> ". $row['seats']. "</td></tr><br/>";
          }
-      }
-      else
-        {
-        echo "<br/><blockquote><h4 class='text-success'>&lt/&gt &nbsp&nbspThere's nothing here... <h4></blockquote> ";
-      } 
 ?>
 </div>
 </div>
