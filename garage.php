@@ -88,17 +88,6 @@
     width:75%;
     border-radius:50%;
   }
-  #wrapper
-  {
-   text-align:left;
-   margin:0 auto;
-   padding:0px;
-   width:995px;
-  }
-  #output_image
-  {
-   max-width:300px;
-  }
   .imgd
   {
     margin:auto;
@@ -123,6 +112,17 @@
   -webkit-transform: scale(0.9);
   transform: scale(0.9);
 }
+  #wrapper
+  {
+   text-align:left;
+   margin:0 auto;
+   padding:0px;
+   width:995px;
+  }
+  #output_image
+  {
+   max-width:300px;
+  }
   </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

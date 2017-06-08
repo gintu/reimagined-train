@@ -129,6 +129,31 @@ if ($result) {
               $row['j_time']."
           </td>
         <tr>
+        <tr>
+          <td style='color:teal;'>
+              Trip Type
+          </td>
+          <td>" .
+              $row['rtrip']."
+          </td>
+        <tr>
+        <tr>
+          <td style='color:teal;'>
+              Flexibility
+          </td>
+          <td>" .
+              $row['depflex']."
+          </td>
+        <tr>
+        <tr>
+          <td style='color:teal;'>
+              Luggage type
+          </td>
+          <td>" .
+              $row['lug']."
+          </td>
+        <tr>
+
           <td style='color:teal;'>".
              "Journey<br> Description
           </td>
@@ -186,7 +211,7 @@ if ($result) {
       echo "<div style='float:left;margin:0 0 40px 40px;'><blockquote><h1>"."Vehicle Description"."</h1> ";
       echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" style="border-radius:7px" >';
     //echo '<img src="uploads/wallhaven-173882.jpg" width="300px" >';
- echo "<br>Model Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_model"]."<br>"."Registration Number&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp".$row["v_rno"]."<br>"."Number of seats left&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_seat"]."<br>"."Vehicle Description&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_desc"]."<br>";
+ echo "<br>Model Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_model"]."<br>"."Registration Number&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp".$row["v_rno"]."<br>"."Total Number of seats&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_seat"]."<br>"."Vehicle Description&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_desc"]."<br>";
 // echo $row["v_image_name"];
  //echo "<img src='uploads/".$row["v_image_name"]."'/>";
 

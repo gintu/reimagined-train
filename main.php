@@ -244,6 +244,63 @@ if($_SESSION['uid']==null)
            <input type="text" name="seats" class="form-control" id="seats" placeholder="seats" >
          </div>
         </div>
+        <div class="form-group">
+
+          <div class="col-lg-10">
+            <select class="form-control" id="rtrip" name="rtrip">
+              <option>Round Trip</option>
+              <option>One way trip</option>
+
+
+            </select>
+          <!--  <br>
+            <select multiple="" class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select> -->
+          </div>
+        </div>
+        <div class="form-group">
+
+          <div class="col-lg-10">
+            <select class="form-control" id="depflex" name="depflex">
+              <option>Exactly on time</option>
+              <option>Between 15 minutes</option>
+              <option>Between 1 hour</option>
+
+            </select>
+          <!--  <br>
+            <select multiple="" class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select> -->
+          </div>
+        </div>
+        <div class="form-group">
+
+          <div class="col-lg-10">
+            <select class="form-control" id="lug" name="lug">
+              <option>Free hand/Small handbag</option>
+              <option>A medium sized bag</option>
+              <option>Large Baggeges</option>
+
+            </select>
+          <!--  <br>
+            <select multiple="" class="form-control">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select> -->
+          </div>
+        </div>
     <div class="form-group">
       <div class="col-lg-10">
         <textarea class="form-control" name="rdesc" rows="3" id="rdesc" placeholder="Add a description about your journey.."></textarea>
