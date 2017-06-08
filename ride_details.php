@@ -60,11 +60,6 @@
       <div id="headp">
 
 
-  <h1>Ride#<?php echo $_GET['count'];?></h1>
-  <p>Here are all your Details</p>
-</div>
-</div>
-<div class="container">
 <?php
 
 session_start();
@@ -85,15 +80,21 @@ $dj_id=$_GET['dj_id'];
 $sql = "SELECT * FROM journey where j_id=".$dj_id;
 $result = $conn->query($sql);
 $count=0;
+    
+    echo '<h1>Ride#'.$_GET["count"].'</h1>';
+    while($row = $result->fetch_assoc()) {
+        // output data of each row
+
+        echo "<i><h4 class='text-muted'>".$row["j_desc"]."</h4></i>
+        </div>
+        </div>
+        <div class='container'>";
         echo "
                 <br><br>
                 <div>
                   <h1>Ride details</h1>
                   <p></p>
                 </div>";
-        // output data of each row
-    while($row = $result->fetch_assoc()) {
-
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
       echo "<p>".$row["j_start"]."</p>";
