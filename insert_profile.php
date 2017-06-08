@@ -71,8 +71,9 @@ if ($uploadOk == 0) {
 session_start();
 //$imagetmp=addslashes (file_get_contents($_FILES['uimage']['tmp_name']));
 echo $_SESSION['uid'];
-
-$sql = "INSERT INTO users (bdate,pno,gender,bio,u_image_name) VALUES ('$bdate','$pno','$gender','$bio','$imagename') ";
+if(empty($imagename))
+    $imagename="null";
+$sql = "update users set bdate= ".$bdate.", pno = ".$pno.", gender = '".$gender."', bio = '".$bio."', u_image_name= '".$imagename."' where oauth_uid = '".$_SESSION['uid']."'";
 
 
 if ($conn->query($sql) === TRUE) {
@@ -80,7 +81,7 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-header("Location: profile.php");
+//header("Location: profile.php");
 /*
 
 //Get the content of the image and then add slashes to it
