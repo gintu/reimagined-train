@@ -96,7 +96,7 @@
       if($abc)
       {
         echo '
-          <tr>
+          <tr class="success">
               <th>Sl. No</th>          
               <th>User</th>
               <th>Fare</th>

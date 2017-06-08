@@ -73,7 +73,7 @@ session_start();
 echo $_SESSION['uid'];
 //if(empty($imagename))
 //    $imagename="null";
-$sql = "update users set bdate= ".$bdate.", pno = ".$pno.", gender = '".$gender."', bio = '".$bio."' where oauth_uid = '".$_SESSION['uid']."'";
+$sql = "update users set bdate= '".$bdate."', pno = '".$pno."', gender = '".$gender."', bio = '".$bio."' where oauth_uid = '".$_SESSION['uid']."'";
 
 
 if ($conn->query($sql) === TRUE) {
@@ -81,7 +81,7 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-header("Location: profile.php");
+//header("Location: profile.php");
 /*
 
 //Get the content of the image and then add slashes to it

@@ -80,14 +80,6 @@
   }
   </script>
   <style>
-  .imgdiv
-  {
-    position:relative;
-    height:30%;
-    overflow:hidden;
-    width:75%;
-    border-radius:50%;
-  }
   #wrapper
   {
    text-align:left;
@@ -99,30 +91,6 @@
   {
    max-width:300px;
   }
-  .imgd
-  {
-    margin:auto;
-    width:100%;
-    height:100%;
-  }
- 
-
-/* Shrink */
-.hvr-shrink {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-}
-.hvr-shrink:hover, .hvr-shrink:focus, .hvr-shrink:active {
-  -webkit-transform: scale(0.9);
-  transform: scale(0.9);
-}
   </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -205,12 +173,13 @@
           // output data of each row
             while($row = $result->fetch_assoc()) {
               $count++;
-                echo "<div style='margin-right:7%;margin-bottom:5%;float:left;width:25%;min-width:250px;' class='hvr-shrink'>";
-                echo "<center><h3> Ride #".$count."</h3><a href='select_vehicle.php?v_id=".$row['v_id']."' ><div class='imgdiv'>";
-                echo "<img src = 'uploads/".$row['v_image_name']."' class='imgd'>";
-                echo "</div></a><p><b><br>".$row["v_model"]."</b></p>";
+                echo "<div style='margin-right:7%;margin-bottom:5%;float:left;width:25%;min-width:250px;'><form method='post' action ='select_vehicle.php?v_id=".$row['v_id']."'>";
+                echo "<center><h3> Ride #".$count."</h3><div style='position:relative;height:30%;overflow:hidden;width:75%;border-radius:50%;'>";
+                echo "<img src = 'uploads/".$row['v_image_name']."' style='margin:auto;postition:absolute;width:100%;height:100%;'>";
+                echo "</div><p><b><br>".$row["v_model"]."</b></p>";
                 echo "<p>".$row["v_rno"]."</p>";
                 echo "<p><i><div style='opacity:.5;style='max-height:15%;height:7%;'>".$row["v_desc"]."</div></i></p>";
+                echo "<button class= 'btn btn-success' type='submit' >Select</button>";
                 echo "</center></form></div>";
             }
           }

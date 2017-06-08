@@ -138,7 +138,7 @@ echo '<div style="clear:left;"><table class="table table-striped table-hover ">'
       if($cnt==1)
       {
         echo '
-          <tr><br><h2>Booked users<h2>
+          <tr class="success"><br><h2>Booked users<h2>
               <th>Sl. No</th>          
               <th>Name</th>
               <th>Bio</th>
