@@ -25,7 +25,7 @@
           }
         }
 
-  	  function validateForm()
+      function validateForm()
   {
   var a=document.forms["reg"]["mname"].value;
   var b=document.forms["reg"]["rno"].value;
@@ -36,7 +36,7 @@
     alert("All Field must be filled out");
     return false;
     }
-  	if (a==null || a=="")
+    if (a==null || a=="")
     {
     alert("Model name must be filled out");
     return false;
@@ -80,6 +80,14 @@
   }
   </script>
   <style>
+  .imgdiv
+  {
+    position:relative;
+    height:30%;
+    overflow:hidden;
+    width:75%;
+    border-radius:50%;
+  }
   #wrapper
   {
    text-align:left;
@@ -91,6 +99,30 @@
   {
    max-width:300px;
   }
+  .imgd
+  {
+    margin:auto;
+    width:100%;
+    height:100%;
+  }
+ 
+
+/* Shrink */
+.hvr-shrink {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-shrink:hover, .hvr-shrink:focus, .hvr-shrink:active {
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
   </style>
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -145,9 +177,11 @@
 <ul class="nav navbar-nav navbar-right">
       <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
   </ul>
-
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Find Ride</a></li>
+        <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer Ride</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find Ride</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href=<?php if($var=='Login') echo 'index.php'; else echo 'profile.php';?> data-vivaldi-spatnav-clickable="1"><?php echo $var;?></a></li>
@@ -159,11 +193,18 @@
 
   <div class="jumbotron">
     <div id ="headp">
-      <h1>Select vehicle</h1>
-      <p>Share empty seats of your ride!</p>
+      <h1>Your Garage</h1>
+      <p>Add or remove vehicles</p>
     </div>
   </div>
   <center>
+  <h3 class="text-danger">
+    <?php
+    if(!empty($_GET) && $_SESSION['flag']==0)
+      echo "Can't delete vehicles which have rides ahead. Remove rides first.<br><br>";
+      $_SESSION['flag']=1;
+    ?>
+  </h3>
 <div class="container">
       <?php
           $query = 'select * from vehicle where uid ='.$_SESSION['uid'];
@@ -173,114 +214,17 @@
           // output data of each row
             while($row = $result->fetch_assoc()) {
               $count++;
-                echo "<div style='margin-right:7%;margin-bottom:5%;float:left;width:25%;min-width:250px;'><form method='post' action ='select_vehicle.php?v_id=".$row['v_id']."'>";
-                echo "<center><h3> Ride #".$count."</h3><div style='position:relative;height:30%;overflow:hidden;width:75%;border-radius:50%;'>";
-                echo "<img src = 'uploads/".$row['v_image_name']."' style='margin:auto;postition:absolute;width:100%;height:100%;'>";
+                echo "<div style='margin-right:7%;margin-bottom:5%;float:left;width:25%;min-width:250px;' class='hvr-shrink'>";
+                echo "<center><h3> Ride #".$count."</h3><div class='imgdiv'>";
+                echo "<img src = 'uploads/".$row['v_image_name']."' class='imgd'>";
                 echo "</div><p><b><br>".$row["v_model"]."</b></p>";
                 echo "<p>".$row["v_rno"]."</p>";
                 echo "<p><i><div style='opacity:.5;style='max-height:15%;height:7%;'>".$row["v_desc"]."</div></i></p>";
-                echo "<button class= 'btn btn-success' type='submit' >Select</button>";
+                echo "<a class='btn btn-success' href=remove_vehicle.php?v_id='".$row['v_id']."'>Remove</a>";
                 echo "</center></form></div>";
             }
           }
           ?>
-</div>
-</center>
-  <div class="container " style="clear:left;">
-<br>
-<br>
-
-    <form name="reg" class="form-horizontal"  form method="post" action="insert_vehicle.php" enctype="multipart/form-data">
-      <fieldset>
-
-    <h1>Or add a new one</h1>
-    <br/>
-        <div class="form-group">
-          <div class="col-lg-10" id="autocomplete" >
-            <input type="text" name="mname" class="form-control" id="mname" placeholder="Model Name" >
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-lg-10">
-            <input type="text" name="rno"  pattern="[A-Z]{2}\s[0-9|\s]{1,2}\s[A-Z|\s]{1,2}\s[0-9]{1,4}" class="form-control" id="rno" placeholder="Registraion Number eg(KL xx x xxxx)" >
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-lg-10">
-            <input type="number" name="nos" class="form-control" id="nos" placeholder="Number of seats" >
-          </div>
-        </div>
-<!--   <div class="form-group">
-<label for="date" class="col-lg-2 control-label">Date</label>
-<div class="col-lg-10">
-<input type="text" class="form-control" id="date" placeholder="date">
-</div>
-</div>
-<div class="form-group">
-<label for="time" class="col-lg-2 control-label">Time</label>
-<div class="col-lg-10">
-<input type="text" class="form-control" id="time" placeholder="time">
-</div>
-</div>
-
-<div class="form-group">
-<label for="fare" class="col-lg-2 control-label">Fare</label>
-<div class="col-lg-10">
-<input type="text" class="form-control" id="fare" placeholder="fare">
-</div>
-</div> -->
-        <div class="form-group">
-          <div class="col-lg-10">
-            <textarea name="vdesc" class="form-control" rows="3" id="rdesc" placeholder="Short Description about the vehicle.."  ></textarea>
-          </div>
-        </div>
-
-
-<!--    <div class="form-group">
-<label class="col-lg-2 control-label">Radios</label>
-<div class="col-lg-10">
-<div class="radio">
-<label>
-<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
-Option one is this
-</label>
-</div>
-<div class="radio">
-<label>
-<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-Option two can be something else
-</label>
-</div>
-</div>
-</div>
--->
-      <div class="form-group">
-        <div class="col-lg-10">
-<!--<input type="file" name="myimage" class="form-control" id="nos" >-->
-          <input type="file" accept="image/*" onchange="preview_image(event)" name="myimage" class="form-control" id="myimage" >
-            <div id="wrapper">
-              <br>
-              <img id="output_image"/>
-            </div>
-          </input>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-lg-10 col-lg-offset-2">
-          <button type="reset" class="btn btn-default" >Cancel</button>
-          <button type="submit" onclick="validateForm()" class="btn btn-success" value="Upload Image" >Save</button>
-          <script>
-              function myFunction() {
-                  alert("I am an alert box!");
-              }
-          </script>
-        </div>
-      </div>
-    </fieldset>
-  </form>
-</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

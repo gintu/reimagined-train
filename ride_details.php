@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <style type="text/css">
+.imgdiv
+  {
+    height: 30%;
+    width: 17%;
+    margin-top: 2%;
+    overflow: hidden;
+    border-radius: 50%;
+    min-height: 200px;
+    min-width: 200px;
+    position: relative;
+  }
+.imgd
+  {
+    position: absolute;
+    bottom:0;
+    left: -10%;;
+    max-height:100%;
+    /* For the following settings we set 100%, but it can be higher if needed 
+    See the answer's update */
+  }
+ 
+  </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,6 +63,7 @@
       </ul>
 
 -->
+
   <ul class="nav navbar-nav navbar-right">
       <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
   </ul>
@@ -96,7 +120,7 @@ $count=0;
                   <p></p>
                 </div>";
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
-      echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
+      echo "<div style='float:left;margin: 0 0 2% 2%;'><blockquote>";
       echo "<p>".$row["j_start"]."</p>";
       echo "<p>".$row["j_finish"]."<p>";
       echo "<p>".$row["j_date"]."<p>";
@@ -125,7 +149,9 @@ if ($result) {
  echo "<br>Model Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_model"]."<br>"."Registration Number&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp".$row["v_rno"]."<br>"."Number of seats left&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_seat"]."<br>"."Vehicle Description&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_desc"]."<br></div>";
 // echo $row["v_image_name"];
  //echo "<img src='uploads/".$row["v_image_name"]."'/>";
-echo "<img src='uploads/".$row['v_image_name']."' style='width:15%;margin-top:5%;margin-left:3%;'>";
+                echo "<center><div class='imgdiv'>";
+                echo "<img src = 'uploads/".$row['v_image_name']."' class='imgd'>";
+                echo "</div></center>";
 
     }
 }

@@ -41,20 +41,16 @@
 
 -->
   <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="garage.php">Garage<span class="sr-only">(current)</span></a></li>
+      <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
+      <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a Ride</a></li>
       <li><a href="logout.php" data-vivaldi-spatnav-clickable="1" style="color: yellow">Logout</a></li>
   </ul>
-<ul class="nav navbar-nav navbar-right">
-    <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Offer a Ride</a></li>
-  </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find a Ride</a></li>
-      </ul>
     </div>
   </div>
 </nav>
     <div class="jumbotron" >
       <div id="headp">
-
 
   <h1>Your Profile</h1>
   <p>Here are all your Detalis</p>
