@@ -46,7 +46,7 @@
   </head>
   <body>
 
-  
+
         <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -104,13 +104,13 @@
     <div class="form-group">
 
       <div class="col-lg-10">
-        <input type="text" name="pno" class="form-control" id="pno" placeholder="Enter Your Phone Number..">
+        <input type="text" name="pno" class="form-control" id="pno" placeholder="Enter Your Phone Number.." required>
       </div>
     </div>
     <div class="form-group">
 
       <div class="col-lg-10">
-        <input type="date" name="bdate" class="form-control" id="bdate" placeholder="enter your birthday..">
+        <input type="date" name="bdate" class="form-control" id="bdate" placeholder="enter your birthday.." required>
       </div>
     </div>
   <!--  <div class="checkbox">
@@ -121,7 +121,7 @@
     <div class="form-group">
 
       <div class="col-lg-10">
-        <select class="form-control" id="select" name="gender">
+        <select class="form-control" id="select" name="gender" required>
           <option>Male</option>
           <option>Female</option>
           <option>Other</option>
@@ -155,7 +155,7 @@
             Option one is this
           </label>
         </div>">-->
-<div class="form-group">
+<!--<div class="form-group">
       <div class="col-lg-10">
         <input type="file" accept="image/*" onchange="preview_image(event)" name="uimage" class="form-control" id="uimg" >
         <div id="wrapper">
@@ -165,7 +165,7 @@
         <br>
         </div>
 </div>
-      </div>
+      </div>-->
 
 
       <!--<input type="file" accept="image/*" onchange="preview_image(event)">

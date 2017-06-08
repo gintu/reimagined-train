@@ -22,7 +22,7 @@ $bio=$_POST['bio'];
 $name=addslashes($_FILES["uimage"],["tmp_name"]);
 $image=file_get_contents($image);
 $image=base64_encode($image);*/
-$imagename=$_FILES["uimage"]["name"];
+/*$imagename=$_FILES["uimage"]["name"];
 
 
 $target_dir = "uploads/";
@@ -67,13 +67,13 @@ if ($uploadOk == 0) {
         echo "Sorry, there was an error uploading your file.";
     }
 }
-
+*/
 session_start();
 //$imagetmp=addslashes (file_get_contents($_FILES['uimage']['tmp_name']));
 echo $_SESSION['uid'];
-if(empty($imagename))
-    $imagename="null";
-$sql = "update users set bdate= ".$bdate.", pno = ".$pno.", gender = '".$gender."', bio = '".$bio."', u_image_name= '".$imagename."' where oauth_uid = '".$_SESSION['uid']."'";
+//if(empty($imagename))
+//    $imagename="null";
+$sql = "update users set bdate= ".$bdate.", pno = ".$pno.", gender = '".$gender."', bio = '".$bio."' where oauth_uid = '".$_SESSION['uid']."'";
 
 
 if ($conn->query($sql) === TRUE) {
@@ -81,7 +81,7 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-//header("Location: profile.php");
+header("Location: profile.php");
 /*
 
 //Get the content of the image and then add slashes to it
