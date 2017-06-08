@@ -104,7 +104,7 @@ if ($result) {
     while($row = $result->fetch_assoc()) {
       /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       echo "<blockquote>";
-      echo '<img src="'.$_SESSION['picture'].'" width="100px" >';
+      echo '<img src="'.$_SESSION['picture'].'" width="100px" style="border-radius:10%;" >';
       echo '<h1>'.$row["first_name"].' '.$row["last_name"].'</h1>';
       echo "<p>".$row["email"]."</p>";
       echo '<a href="create_profile.php" class = "btn btn-success">Update Your Profile</a>';
@@ -144,7 +144,6 @@ if($count==0)
       echo "<p>".$row["j_start"]."</p>";
       echo "<p>".$row["j_finish"]."<p>";
       echo "<p>".$row["j_date"]."<p>";
-      echo "<p>".$row["j_time"]."<p>";
       echo "<p style='color:yellow;'> Seats Left :".$row["seats"]."<p>";
       echo "<button class= 'btn btn-success' type='submit'>See more details</button></td></tr>";
 echo "</blockquote></div></form>";
@@ -178,7 +177,6 @@ $count=0;
       echo "<p>".$row["j_start"]."</p>";
       echo "<p>".$row["j_finish"]."<p>";
       echo "<p>".$row["j_date"]."<p>";
-      echo "<p>".$row["j_time"]."<p>";
       echo "<p style='color:cyan;'>Reserved ".$row["seats"]." seat<p>";      
       echo "<button class= 'btn btn-success' type='submit'>Cancel Purchase</button></td></tr><br/>";
 echo "</blockquote></div></form>";

@@ -167,7 +167,7 @@ if ($result) {
   //  echo "<img src=>"
   echo '<img src="'.$row['picture'].'" width="200px" style="border-radius:7px" >';
 
-      echo "<br>Name:".$row["first_name"]." ".$row["last_name"]."<br>";
+      echo "<br><b>Name&nbsp&nbsp:&nbsp&nbsp".$row["first_name"]." ".$row["last_name"]."<br></b>";
       echo "<p>".$row["email"]."</p>";
       echo "<p><a href= '".$row["link"]."' class='btn btn-success'>Google+ profile</a><p>";
 
@@ -186,7 +186,7 @@ if ($result) {
       echo "<div style='float:left;margin:0 0 40px 40px;'><blockquote><h1>"."Vehicle Description"."</h1> ";
       echo '<img src="uploads/'.$row['v_image_name'].'" width="300px" style="border-radius:7px" >';
     //echo '<img src="uploads/wallhaven-173882.jpg" width="300px" >';
- echo "<br>Model Name:".$row["v_model"]."<br>"."Registration Number:".$row["v_rno"]."<br>"."Number of seats left:".$row["v_seat"]."<br>"."Vehicle Description:".$row["v_desc"]."<br>";
+ echo "<br>Model Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_model"]."<br>"."Registration Number&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp".$row["v_rno"]."<br>"."Number of seats left&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_seat"]."<br>"."Vehicle Description&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:&nbsp&nbsp".$row["v_desc"]."<br>";
 // echo $row["v_image_name"];
  //echo "<img src='uploads/".$row["v_image_name"]."'/>";
 
