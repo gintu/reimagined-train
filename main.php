@@ -197,7 +197,7 @@ if($_SESSION['uid']==null)
   echo "Please <a href='index.php'>Login</a> first<!--";
 }
 ?>
-  <div id="map" style="width:30%;min-width:250px;float:left;margin-top:6%;margin-left:5%;border-radius: 2%;"></div>
+  <div id="map" style="width:30%;min-width:250px;float:left;margin-top:8vh;margin-left:5%;border-radius: 2%;"></div>
 
 
 <div class="container" style="float:left;width:62%;margin-left:2%;">
@@ -277,7 +277,7 @@ if($_SESSION['uid']==null)
   </fieldset>
 </form>
 </div>
-    <?php 
+    <?php
     if($_SESSION['uid']=='')
       echo '<!--';
     ?>
