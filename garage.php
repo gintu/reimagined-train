@@ -90,9 +90,9 @@
   }
   .imgd
   {
-    margin:auto;
-    width:100%;
+    left: -30%;
     height:100%;
+    width: 140%;
   }
  
 
@@ -198,10 +198,13 @@
     </div>
   </div>
   <center>
-  <h3 class="text-danger">
     <?php
     if(!empty($_GET) && $_SESSION['flag']==0)
-      echo "Can't delete vehicles which have rides ahead. Remove rides first.<br><br>";
+      echo '<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4>Warning!</h4>
+    <p>Cant delete vehicles which have rides ahead. <a href="profile.php" class="alert-link"> Remove rides </a> first.</p>
+    </div>';
       $_SESSION['flag']=1;
     ?>
   </h3>

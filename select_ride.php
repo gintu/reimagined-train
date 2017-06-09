@@ -110,7 +110,7 @@
             $query1= 'select * from users where oauth_uid='.$row["uid"];
             $result1 = mysqli_query($conn,$query1);
             $row1 = $result1->fetch_assoc();      
-            echo "<tr><td> ". $cnt++."<td> ". $row1['first_name']. "</td><td> ". $row['j_fare']. "</td><td> ". $row['j_desc']. "</td><td> ". $row['seats']. "</td><td><a href = 'book.php?jid=".$row['j_id']."'><button class= 'btn btn-success'>Go</button></a></td></tr><br/>";
+            echo "<tr><td> ". $cnt++."<td>". $row1['last_name']. " ".$row1['first_name']."</td><td> ". $row['j_fare']. "</td><td> ". $row['j_desc']. "</td><td> ". $row['seats']. "</td><td><a href = 'book.php?jid=".$row['j_id']."'><button class= 'btn btn-success'>Go</button></a></td></tr><br/>";
          }
       }
       else
@@ -120,6 +120,8 @@
 ?>
 </table>
 </div>
+<center>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

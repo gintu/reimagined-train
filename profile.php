@@ -105,7 +105,7 @@ if ($result) {
       echo "<p>".$row["email"]."</p>";
       echo "<p>".$row["pno"]."</p>";
       echo "<p>".$row["gender"]."</p>";
-      echo "<p>".$row["bio"]."</p>";
+      echo "<p class='text-muted'><i>".$row["bio"]."</i></p>";
       echo '<a href="create_profile.php" class = "btn btn-success">Update Your Profile</a>';
       echo "</blockquote>";
 
@@ -136,16 +136,16 @@ if($count==0)
                         <p>Here's are all your offers</p>
                       </div>";
       }      /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
-      echo "<form method='post' action='ride_details.php?dj_id=".$row['j_id']."&count=".($count+1)."'>";
+      echo "<div class='well' style='float:left;margin:2%;min-width:300px;'><form method='post' action='ride_details.php?dj_id=".$row['j_id']."&count=".($count+1)."'>";
       $count++;
-      echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
+      echo "<blockquote>";
       echo "<h3> Ride #".$count."</h3>";
       echo "<p>".$row["j_start"]."</p>";
       echo "<p>".$row["j_finish"]."<p>";
       echo "<p>".$row["j_date"]."<p>";
       echo "<p style='color:yellow;'> Seats Left :".$row["seats"]."<p>";
       echo "<button class= 'btn btn-success' type='submit'>See more details</button></td></tr>";
-echo "</blockquote></div></form>";
+echo "</blockquote></form></div>";
 //  header('Content-type: image/jpg');
       // echo $content;
 //      echo '<img src="data:image/jpeg;base64,'.base64_encode($content->load()) .'" />';
@@ -170,15 +170,15 @@ $count=0;
       }
             /*  echo "<h1>"."name "."</h1>" . $row["u_name"]. "- email " . $row["email"]. " " . $row["bdate"]. "<br>";*/
       $count++;
-      echo "<form method = 'post' action='cancel_ride.php?cj_id=".$row['jid']."'>";
-      echo "<div style='float:left;margin: 0 0 50px 50px;'><blockquote>";
+      echo "<div class='well' style='float:left;margin:2%;'><form method = 'post' action='cancel_ride.php?cj_id=".$row['jid']."'>";
+      echo "<blockquote>";
       echo "<h3> Ride #".$count."</h3>";
       echo "<p>".$row["j_start"]."</p>";
       echo "<p>".$row["j_finish"]."<p>";
       echo "<p>".$row["j_date"]."<p>";
       echo "<p style='color:cyan;'>Reserved ".$row["seats"]." seat<p>";
       echo "<button class= 'btn btn-success' type='submit'>Cancel Purchase</button></td></tr><br/>";
-echo "</blockquote></div></form>";
+echo "</blockquote></form></div>";
 /*
 $sql = "SELECT * FROM book,journey where book.u_id='31'";
 $result = $conn->query($sql);
