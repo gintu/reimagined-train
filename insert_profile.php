@@ -81,7 +81,7 @@ if ($conn->query($sql) === TRUE) {
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
-//header("Location: profile.php");
+header("Location: profile.php");
 /*
 
 //Get the content of the image and then add slashes to it
