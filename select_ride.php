@@ -91,7 +91,7 @@
   // Check connection
   if (!$conn)
       die("Connection failed: " . mysqli_connect_error());
-      $sqli = 'select * from journey where sel=1 and j_start like "%'. $_POST["j_start"].'%" order by j_fare';//'.'"journey.u_id = user.u_id and journey.v_id = vehicle.v_id and j_finish ="'. $_POST["j_end"].'" and j_date="'. $_POST["j_date"].'"';
+      $sqli = 'select * from journey,users where sel=1 and j_start like "%'. $_POST["j_start"].'%" and journey.uid = users.oauth_uid and j_finish like "%'. $_POST["j_finish"].'%" and j_date="'. $_POST["j_date"].'" order by j_fare ';
       $abc = $conn->query($sqli);
       if($abc)
       {

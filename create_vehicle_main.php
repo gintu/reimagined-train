@@ -182,7 +182,7 @@
   </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="main.php" data-vivaldi-spatnav-clickable="1">Find Ride</a></li>
+        <li><a href="home_join_ride.php" data-vivaldi-spatnav-clickable="1">Find Ride</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href=<?php if($var=='Login') echo 'index.php'; else echo 'profile.php';?> data-vivaldi-spatnav-clickable="1"><?php echo $var;?></a></li>

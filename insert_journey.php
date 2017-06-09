@@ -25,7 +25,7 @@ echo $_POST['depflex'];*/
 
 
 //$sql = "INSERT INTO journey (j_start, j_finish, j_date,j_time,j_fare,j_desc,uid,seats,sel,rtrip,lug) VALUES ('$start', '$finish', '$date','$time','$fare','$rdesc',".$_SESSION['uid'].",".$_POST['seats'].",0)";
-$sql = "INSERT INTO journey (j_start, j_finish, j_date,j_time,j_fare,j_desc,uid,seats,sel,rtrip,lug,depflex) VALUES ('$start', '$finish', '$date','$time','$fare','$rdesc',".$_SESSION['uid'].",".$_POST['seats'].",0,'".$_POST['rtrip']."','".$_POST['lug']."','".$_POST['depflex']."')";
+$sql = "INSERT INTO journey (j_start, j_finish, j_date,j_time,j_fare,j_desc,uid,seats,sel,rtrip,lug,depflex) VALUES ('$start', '$finish', '$date','$time','$fare','$rdesc',".$_SESSION['uid'].",".$_POST['seats'].",0,'".$_POST['rtrip']."','".$_POST['lug']."','".$_POST['depflex']."')";	
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
